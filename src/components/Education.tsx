@@ -8,8 +8,8 @@ const Education = () => {
       degree: 'Bachelor of Science in Information Technology',
       school: 'Caraga State University',
       location: 'Cabadbaran City',
-      period: '2024-2025',
-      status: 'Graduate',
+      period: '2021-2025',
+      status: 'Graduated',
       description: 'Specialized in software development, database management, and information systems.',
       achievements: [
         'Completed thesis on web application development',

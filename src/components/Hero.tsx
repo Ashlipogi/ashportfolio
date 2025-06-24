@@ -1,11 +1,12 @@
-
 import { useState, useEffect } from 'react';
 import { Code, ArrowDown } from 'lucide-react';
+import { useIsMobile } from '../hooks/use-mobile'; // <-- import the hook
 
 const Hero = () => {
   const [text, setText] = useState('');
   const fullText = "Full-Stack Developer";
   const [showCursor, setShowCursor] = useState(true);
+  const isMobile = useIsMobile(); // <-- use the hook
 
   useEffect(() => {
     let i = 0;
@@ -37,7 +38,10 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative px-4">
+    <section
+      id="hero"
+      className={`min-h-screen flex items-center justify-center relative px-4 ${isMobile ? 'mt-20' : ''}`}
+    >
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Text Content */}
         <div className="text-center md:text-left space-y-6 animate-fade-in">
