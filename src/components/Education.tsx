@@ -1,4 +1,6 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { FaFacebook, FaInstagram, FaPhone, FaEnvelope } from 'react-icons/fa';
+
 const Education = () => {
   const [ref, isVisible] = useScrollAnimation();
   const educationData = [
@@ -111,20 +113,40 @@ const Education = () => {
             <p className="text-gray-400 mb-6">
               Interested in collaborating or learning more about my work? I'd love to hear from you.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a 
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=villanuevajohn519@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg text-white font-semibold hover:from-cyan-600 hover:to-purple-600 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25"
-          >
-            Get In Touch
-          </a>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=villanuevajohn519@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg text-white font-semibold hover:from-cyan-600 hover:to-purple-600 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25"
+                title="Email"
+              >
+                <FaEnvelope size={20} /> Gmail
+              </a>
               <a
                 href="tel:09478294412"
-                className="px-8 py-3 border border-cyan-500 text-cyan-400 rounded-lg font-semibold hover:bg-cyan-500 hover:text-white transition-all duration-300 hover:scale-105"
+                className="flex items-center gap-2 px-6 py-3 border border-cyan-500 text-cyan-400 rounded-lg font-semibold hover:bg-cyan-500 hover:text-white transition-all duration-300 hover:scale-105"
+                title="Call"
               >
-                Call Me
+                <FaPhone size={20} /> Call
+              </a>
+              <a
+                href="https://www.facebook.com/AZHLEEH"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-6 py-3 border border-blue-600 text-blue-400 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-105"
+                title="Facebook"
+              >
+                <FaFacebook size={20} /> Facebook
+              </a>
+              <a
+                href="https://www.instagram.com/ashzyed/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-6 py-3 border border-pink-500 text-pink-400 rounded-lg font-semibold hover:bg-pink-500 hover:text-white transition-all duration-300 hover:scale-105"
+                title="Instagram"
+              >
+                <FaInstagram size={20} /> Instagram
               </a>
             </div>
           </div>

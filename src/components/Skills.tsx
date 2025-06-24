@@ -7,17 +7,17 @@ const Skills = () => {
     {
       title: 'Programming Languages',
       skills: [
-        { name: 'HTML', level: 95, color: 'from-orange-500 to-red-500', icon: Globe },
+        { name: 'HTML', level: 90, color: 'from-orange-500 to-red-500', icon: Globe },
         { name: 'CSS', level: 90, color: 'from-blue-500 to-cyan-500', icon: Globe },
         { name: 'JavaScript', level: 85, color: 'from-yellow-500 to-orange-500', icon: Code },
         { name: 'PHP', level: 80, color: 'from-purple-500 to-indigo-500', icon: Code },
-        { name: 'Python', level: 75, color: 'from-green-500 to-blue-500', icon: Code },
+        { name: 'Python', level: 45, color: 'from-green-500 to-blue-500', icon: Code },
       ]
     },
     {
       title: 'Frameworks & Tools',
       skills: [
-        { name: 'Laravel', level: 85, color: 'from-red-500 to-pink-500' },
+        { name: 'Laravel', level: 90, color: 'from-red-500 to-pink-500' },
         { name: 'React.js', level: 80, color: 'from-cyan-500 to-blue-500' },
         { name: 'Bootstrap', level: 90, color: 'from-purple-500 to-violet-500' },
         { name: 'MySQL', level: 85, color: 'from-orange-500 to-amber-500' },
@@ -27,10 +27,11 @@ const Skills = () => {
     {
       title: 'Additional Skills',
       skills: [
+        { name: 'Prompt Engineering', level: 90, color: 'from-yellow-500 to-orange-500' },
         { name: 'Database Management', level: 85, color: 'from-emerald-500 to-teal-500' },
         { name: 'Web Development', level: 90, color: 'from-indigo-500 to-purple-500' },
-        { name: 'System Administration', level: 70, color: 'from-pink-500 to-rose-500' },
-        { name: 'Technical Support', level: 80, color: 'from-violet-500 to-purple-500' },
+        { name: 'System Administration', level: 50, color: 'from-pink-500 to-rose-500' },
+        { name: 'Technical Support', level: 50, color: 'from-violet-500 to-purple-500' },
       ]
     }
   ];

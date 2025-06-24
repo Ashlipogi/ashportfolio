@@ -29,6 +29,13 @@ const Hero = () => {
     return () => clearInterval(cursorTimer);
   }, []);
 
+  const scrollToExperience = () => {
+    const element = document.getElementById('experience');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative px-4">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -58,16 +65,19 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg text-white font-semibold hover:from-cyan-600 hover:to-purple-600 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25">
+            <button 
+              onClick={scrollToExperience}
+              className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg text-white font-semibold hover:from-cyan-600 hover:to-purple-600 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25"
+            >
               View My Work
             </button>
-<a
-  href="/Villanueva, John Ashley D. CV2-Resume.pdf"
-  download
-  className="px-8 py-3 border border-cyan-500 text-cyan-400 rounded-lg font-semibold hover:bg-cyan-500 hover:text-white transition-all duration-300 hover:scale-105 text-center"
->
-  Download CV
-</a>
+            <a
+              href="/Villanueva, John Ashley D. CV2Resume.pdf"
+              download
+              className="px-8 py-3 border border-cyan-500 text-cyan-400 rounded-lg font-semibold hover:bg-cyan-500 hover:text-white transition-all duration-300 hover:scale-105 text-center"
+            >
+              Download CV
+            </a>
           </div>
         </div>
 

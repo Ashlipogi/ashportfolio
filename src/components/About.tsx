@@ -6,7 +6,7 @@ const About = () => {
   const stats = [
     { label: 'Years of Study', value: '4+' },
     { label: 'Technologies', value: '10+' },
-    { label: 'Projects', value: '15+' },
+    { label: 'Projects', value: '10+' },
     { label: 'Certifications', value: '1+' },
   ];
 

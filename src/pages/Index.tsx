@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Code } from 'lucide-react';
 import AnimatedBackground from '../components/AnimatedBackground';
@@ -38,7 +39,7 @@ const Index = () => {
       <AnimatedBackground />
       <Navigation activeSection={activeSection} />
       
-      <main className="relative z-10">
+      <main className="relative">
         <Hero />
         <About />
         <Skills />
