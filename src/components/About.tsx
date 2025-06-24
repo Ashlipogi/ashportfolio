@@ -7,7 +7,7 @@ const About = () => {
     { label: 'Years of Study', value: '4+' },
     { label: 'Technologies', value: '10+' },
     { label: 'Projects', value: '15+' },
-    { label: 'Certifications', value: '5+' },
+    { label: 'Certifications', value: '1+' },
   ];
 
   return (
