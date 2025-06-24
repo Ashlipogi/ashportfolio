@@ -1,12 +1,51 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useState, useEffect } from 'react';
+import { Code, Html, Css } from 'lucide-react';
+import AnimatedBackground from '../components/AnimatedBackground';
+import Hero from '../components/Hero';
+import About from '../components/About';
+import Skills from '../components/Skills';
+import Experience from '../components/Experience';
+import Education from '../components/Education';
+import Navigation from '../components/Navigation';
 
 const Index = () => {
+  const [activeSection, setActiveSection] = useState('hero');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['hero', 'about', 'skills', 'experience', 'education'];
+      const scrollPosition = window.scrollY + 100;
+
+      sections.forEach(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetHeight = element.offsetHeight;
+          
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+          }
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="relative min-h-screen bg-gray-900 text-white overflow-x-hidden">
+      <AnimatedBackground />
+      <Navigation activeSection={activeSection} />
+      
+      <main className="relative z-10">
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Education />
+      </main>
     </div>
   );
 };
