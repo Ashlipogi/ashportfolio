@@ -1,25 +1,48 @@
 
 import { useState, useEffect } from 'react';
 import { Code, ArrowDown } from 'lucide-react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Hero = () => {
-  const [text, setText] = useState('');
-  const fullText = "Full-Stack Developer";
+  const [ref, isVisible] = useScrollAnimation();
+  const [nameText, setNameText] = useState('');
+  const [titleText, setTitleText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
+  const [nameComplete, setNameComplete] = useState(false);
+
+  const fullName = "John Ashley Villanueva";
+  const fullTitle = "Full-Stack Developer";
 
   useEffect(() => {
     let i = 0;
-    const timer = setInterval(() => {
-      if (i < fullText.length) {
-        setText(fullText.slice(0, i + 1));
+    const nameTimer = setInterval(() => {
+      if (i < fullName.length) {
+        setNameText(fullName.slice(0, i + 1));
         i++;
       } else {
-        clearInterval(timer);
+        clearInterval(nameTimer);
+        setNameComplete(true);
       }
     }, 100);
 
-    return () => clearInterval(timer);
+    return () => clearInterval(nameTimer);
   }, []);
+
+  useEffect(() => {
+    if (nameComplete) {
+      let i = 0;
+      const titleTimer = setInterval(() => {
+        if (i < fullTitle.length) {
+          setTitleText(fullTitle.slice(0, i + 1));
+          i++;
+        } else {
+          clearInterval(titleTimer);
+        }
+      }, 100);
+
+      return () => clearInterval(titleTimer);
+    }
+  }, [nameComplete]);
 
   useEffect(() => {
     const cursorTimer = setInterval(() => {
@@ -30,26 +53,33 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative px-4">
+    <section 
+      id="hero" 
+      ref={ref}
+      className={`min-h-screen flex items-center justify-center relative px-4 transition-all duration-1000 ease-out ${
+        isVisible 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-10'
+      }`}
+    >
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Text Content */}
-        <div className="text-center md:text-left space-y-6 animate-fade-in">
+        <div className="text-center md:text-left space-y-6">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30">
             <Code className="w-4 h-4 text-cyan-400" />
             <span className="text-sm text-cyan-300">Welcome to my portfolio</span>
           </div>
           
           <h1 className="text-4xl md:text-6xl font-bold">
-            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              John Ashley
+            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent min-h-[1.2em] block">
+              {nameText}
+              {!nameComplete && <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity`}>|</span>}
             </span>
-            <br />
-            <span className="text-white">Villanueva</span>
           </h1>
           
           <div className="text-xl md:text-2xl text-gray-300 min-h-[2rem]">
-            <span className="text-cyan-400">{text}</span>
-            <span className={`text-cyan-400 ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity`}>|</span>
+            <span className="text-cyan-400">{titleText}</span>
+            {nameComplete && <span className={`text-cyan-400 ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity`}>|</span>}
           </div>
           
           <p className="text-lg text-gray-400 max-w-md">
