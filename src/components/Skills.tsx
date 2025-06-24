@@ -1,7 +1,9 @@
-
 import { Code, Database, Globe } from 'lucide-react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Skills = () => {
+  const [ref, isVisible] = useScrollAnimation();
+
   const skillCategories = [
     {
       title: 'Programming Languages',
@@ -35,7 +37,15 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 px-4 bg-gradient-to-b from-transparent to-gray-900/50">
+    <section 
+      id="skills" 
+      ref={ref}
+      className={`py-20 px-4 bg-gradient-to-b from-transparent to-gray-900/50 transition-all duration-1000 ease-out ${
+        isVisible 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-10'
+      }`}
+    >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
