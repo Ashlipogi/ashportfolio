@@ -1,13 +1,13 @@
 
-import { Code, Html, Css } from 'lucide-react';
+import { Code, Database, Globe } from 'lucide-react';
 
 const Skills = () => {
   const skillCategories = [
     {
       title: 'Programming Languages',
       skills: [
-        { name: 'HTML', level: 95, color: 'from-orange-500 to-red-500', icon: Html },
-        { name: 'CSS', level: 90, color: 'from-blue-500 to-cyan-500', icon: Css },
+        { name: 'HTML', level: 95, color: 'from-orange-500 to-red-500', icon: Globe },
+        { name: 'CSS', level: 90, color: 'from-blue-500 to-cyan-500', icon: Globe },
         { name: 'JavaScript', level: 85, color: 'from-yellow-500 to-orange-500', icon: Code },
         { name: 'PHP', level: 80, color: 'from-purple-500 to-indigo-500', icon: Code },
         { name: 'Python', level: 75, color: 'from-green-500 to-blue-500', icon: Code },
@@ -83,8 +83,8 @@ const Skills = () => {
         {/* Floating Programming Icons */}
         <div className="mt-16 flex justify-center items-center gap-8 flex-wrap">
           {[
-            { name: 'HTML', color: 'text-orange-500', icon: Html },
-            { name: 'CSS', color: 'text-blue-500', icon: Css },
+            { name: 'HTML', color: 'text-orange-500', icon: Globe },
+            { name: 'CSS', color: 'text-blue-500', icon: Globe },
             { name: 'JS', color: 'text-yellow-500', icon: Code },
           ].map((tech, index) => (
             <div

@@ -1,6 +1,5 @@
-
 import { useState, useEffect } from 'react';
-import { Code, Html, Css } from 'lucide-react';
+import { Code } from 'lucide-react';
 import AnimatedBackground from '../components/AnimatedBackground';
 import Hero from '../components/Hero';
 import About from '../components/About';
