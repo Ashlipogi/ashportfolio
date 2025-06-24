@@ -1,5 +1,6 @@
-
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 const Experience = () => {
+  const [ref, isVisible] = useScrollAnimation();
   const experiences = [
     {
       title: 'Photocopy Shop Assistant',
@@ -37,7 +38,15 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 px-4">
+    <section 
+      id="experience" 
+      ref={ref}
+      className={`py-20 px-4 transition-all duration-1000 ease-out ${
+        isVisible 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-10'
+      }`}
+    >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">

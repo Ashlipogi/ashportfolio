@@ -1,5 +1,6 @@
-
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 const Education = () => {
+  const [ref, isVisible] = useScrollAnimation();
   const educationData = [
     {
       degree: 'Bachelor of Science in Information Technology',
@@ -9,22 +10,18 @@ const Education = () => {
       status: 'Graduate',
       description: 'Specialized in software development, database management, and information systems.',
       achievements: [
-        'Graduated with honors',
         'Completed thesis on web application development',
-        'Active participant in programming competitions'
       ]
     },
     {
-      degree: 'Senior High School',
+      degree: 'Senior High School (Computer System Services)',
       school: 'National Senior High School',
       location: 'Cabadbaran City',
       period: '2019-2021',
       status: 'Completed',
-      description: 'Focused on STEM track with emphasis on computer programming and mathematics.',
+      description: 'Focused on Computer System Services(CSS) track, gaining hands-on experience in computer hardware, and networking before pursuing further studies in IT.',
       achievements: [
-        'Consistent honor student',
-        'Member of the Computer Programming Club',
-        'Participated in regional science competitions'
+        'With Honor roll student',
       ]
     },
     {
@@ -35,15 +32,22 @@ const Education = () => {
       status: 'Completed',
       description: 'Built strong foundation in mathematics, science, and early exposure to computer studies.',
       achievements: [
-        'Honor roll student',
-        'Active in school technology programs',
-        'Leadership roles in student organizations'
+        'Honor roll Student',
+        'Participated in Regional Festival of Talents',
       ]
     }
   ];
 
   return (
-    <section id="education" className="py-20 px-4 bg-gradient-to-b from-gray-900/50 to-transparent">
+    <section 
+      id="education" 
+      ref={ref}
+      className={`py-20 px-4 bg-gradient-to-b from-gray-900/50 to-transparent transition-all duration-1000 ease-out ${
+        isVisible 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-10'
+      }`}
+    >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -108,14 +112,16 @@ const Education = () => {
               Interested in collaborating or learning more about my work? I'd love to hear from you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="mailto:villanueva.john81@gmail.com"
-                className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg text-white font-semibold hover:from-cyan-600 hover:to-purple-600 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25"
-              >
-                Get In Touch
-              </a>
+          <a 
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=villanuevajohn519@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg text-white font-semibold hover:from-cyan-600 hover:to-purple-600 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25"
+          >
+            Get In Touch
+          </a>
               <a
-                href="tel:09477292442"
+                href="tel:09478294412"
                 className="px-8 py-3 border border-cyan-500 text-cyan-400 rounded-lg font-semibold hover:bg-cyan-500 hover:text-white transition-all duration-300 hover:scale-105"
               >
                 Call Me

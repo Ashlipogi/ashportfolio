@@ -61,9 +61,13 @@ const Hero = () => {
             <button className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg text-white font-semibold hover:from-cyan-600 hover:to-purple-600 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25">
               View My Work
             </button>
-            <button className="px-8 py-3 border border-cyan-500 text-cyan-400 rounded-lg font-semibold hover:bg-cyan-500 hover:text-white transition-all duration-300 hover:scale-105">
-              Download CV
-            </button>
+<a
+  href="/Villanueva, John Ashley D. CV2-Resume.pdf"
+  download
+  className="px-8 py-3 border border-cyan-500 text-cyan-400 rounded-lg font-semibold hover:bg-cyan-500 hover:text-white transition-all duration-300 hover:scale-105 text-center"
+>
+  Download CV
+</a>
           </div>
         </div>
 
@@ -73,7 +77,7 @@ const Hero = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full blur-xl opacity-30 animate-pulse"></div>
             <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-gradient-to-r from-cyan-500 to-purple-500 hover:scale-105 transition-transform duration-300">
               <img 
-                src="/lovable-uploads/144d392c-83e4-4ab9-8bf8-835966cd8bbe.png" 
+                src="/imgs/144d392c-83e4-4ab9-8bf8-835966cd8bbe.png" 
                 alt="John Ashley Villanueva"
                 className="w-full h-full object-cover object-center"
               />
