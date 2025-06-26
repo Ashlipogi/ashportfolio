@@ -8,6 +8,7 @@ import Experience from '../components/Experience';
 import Projects from '../components/Projects';
 import Education from '../components/Education';
 
+
 const Index = () => {
   const [activeSection, setActiveSection] = useState('hero');
 
