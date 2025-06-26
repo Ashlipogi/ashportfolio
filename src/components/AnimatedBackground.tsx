@@ -1,8 +1,9 @@
-
 import { useEffect, useRef } from 'react';
+import { useIsMobile } from '@/hooks/use-mobile'; // adjust path if needed
 
 const AnimatedBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -121,7 +122,7 @@ const AnimatedBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none z-0"
+      className={`fixed inset-0 w-full h-full z-0 ${!isMobile ? 'pointer-events-none' : ''}`}
       style={{ background: 'linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%)' }}
     />
   );
