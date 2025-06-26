@@ -150,8 +150,8 @@ const Education = () => {
             </div>
           </div>
         </div>
-          <footer className="w-full py-6 mt-10 -mb-10 flex justify-center">
-            <div className="w-full max-w-4xl mx-auto bg-white/10 border border-white/20 rounded-xl text-center text-gray-300 shadow-lg transition-all duration-300 hover:border-white/30">
+          <footer className=" py-6 mt-10 -mb-10 flex justify-center">
+            <div className="w-full mx-auto bg-white/10 border border-white/20 rounded-xl text-center text-gray-300 shadow-lg transition-all duration-300 hover:border-white/30">
               <span className="block py-4 px-6 text-sm md:text-base font-medium">
                 © 2025 John Ashley Villanueva. All Rights Reserved.
               </span>
