@@ -27,15 +27,15 @@ const Navigation = ({ activeSection }: NavigationProps) => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-lg border-b border-cyan-500/20">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-lg border-b border-white/10">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2 cursor-pointer" onClick={() => scrollToSection('hero')}>
-            <div className="p-2 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg">
+            <div className="p-2 bg-white/10 border border-white/20 rounded-lg">
               <Code className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="text-xl font-bold text-white">
               AshDev
             </span>
           </div>
@@ -48,13 +48,13 @@ const Navigation = ({ activeSection }: NavigationProps) => {
                 onClick={() => scrollToSection(item.id)}
                 className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 ${
                   activeSection === item.id
-                    ? 'text-cyan-400'
-                    : 'text-gray-300 hover:text-cyan-400'
+                    ? 'text-white'
+                    : 'text-gray-400 hover:text-white'
                 }`}
               >
                 {item.label}
                 {activeSection === item.id && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full" />
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white rounded-full" />
                 )}
               </button>
             ))}
@@ -62,7 +62,7 @@ const Navigation = ({ activeSection }: NavigationProps) => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-gray-300 hover:text-cyan-400"
+            className="md:hidden p-2 text-gray-300 hover:text-white"
             onClick={() => setIsOpen(!isOpen)}
           >
             <div className="space-y-1">
@@ -82,8 +82,8 @@ const Navigation = ({ activeSection }: NavigationProps) => {
                 onClick={() => scrollToSection(item.id)}
                 className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors duration-300 ${
                   activeSection === item.id
-                    ? 'text-cyan-400 bg-cyan-500/10'
-                    : 'text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/5'
+                    ? 'text-white bg-white/10'
+                    : 'text-gray-300 hover:text-white hover:bg-white/5'
                 }`}
               >
                 {item.label}

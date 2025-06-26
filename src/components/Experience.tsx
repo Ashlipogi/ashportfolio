@@ -107,7 +107,7 @@ const Experience = () => {
     setSelectedImageIndex(0);
   };
 
-  return (
+   return (
     <>
       <section 
         id="experience" 
@@ -120,12 +120,10 @@ const Experience = () => {
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                Work Experience
-              </span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+              Work Experience
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full mx-auto mb-6" />
+            <div className="w-24 h-1 bg-white rounded-full mx-auto mb-6" />
             <p className="text-gray-400 max-w-2xl mx-auto">
               My professional journey and the impact I've made in various roles
             </p>
@@ -135,18 +133,18 @@ const Experience = () => {
             {experiences.map((exp, index) => (
               <div
                 key={index}
-                className="group relative p-8 bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl border border-gray-700 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105"
+                className="group relative p-8 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-all duration-300 hover:scale-105"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-purple-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
                 <div className="relative z-10">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                     <div>
                       <h3 className="text-xl font-bold text-white mb-1">{exp.title}</h3>
-                      <p className="text-cyan-400 font-medium">{exp.company}</p>
+                      <p className="text-gray-300 font-medium">{exp.company}</p>
                     </div>
                     <div className="mt-2 md:mt-0">
-                      <span className="inline-block px-3 py-1 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 rounded-full text-sm text-cyan-300">
+                      <span className="inline-block px-3 py-1 bg-white/10 border border-white/20 rounded-full text-sm text-white">
                         {exp.period}
                       </span>
                     </div>
@@ -157,7 +155,7 @@ const Experience = () => {
                   <ul className="space-y-2 mb-6">
                     {exp.achievements.map((achievement, achievementIndex) => (
                       <li key={achievementIndex} className="flex items-start gap-3 text-gray-400">
-                        <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-2 flex-shrink-0" />
+                        <div className="w-1.5 h-1.5 bg-white rounded-full mt-2 flex-shrink-0" />
                         <span>{achievement}</span>
                       </li>
                     ))}
@@ -166,7 +164,7 @@ const Experience = () => {
                   {exp.hasProject && (
                     <button
                       onClick={openProjectModal}
-                      className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
+                      className="px-6 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-all duration-300 hover:scale-105"
                     >
                       View Project Screenshots
                     </button>
@@ -191,15 +189,15 @@ const Experience = () => {
           }}
         >
           <div
-            className="relative w-full h-full max-w-[1200px] max-h-[95dvh] bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden flex flex-col"
+            className="relative w-full h-full max-w-[1200px] max-h-[95dvh] bg-black/90 border border-white/20 rounded-2xl overflow-hidden flex flex-col"
             style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.5)' }}
             onClick={e => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="flex items-center justify-between p-3 border-b border-gray-700 bg-gray-900 sticky top-0 z-20">
+            <div className="flex items-center justify-between p-3 border-b border-white/20 bg-black/90 sticky top-0 z-20">
               <div>
                 <h3 className="text-2xl font-bold text-white">T-Mobelli Kitchens & Closets Inc.</h3>
-                <p className="text-cyan-400">Purchase Order Management System (POMS)</p>
+                <p className="text-gray-300">Purchase Order Management System (POMS)</p>
               </div>
               <button
                 onClick={closeProjectModal}
@@ -229,14 +227,14 @@ const Experience = () => {
                           <>
                             <button
                               onClick={prevImage}
-                              className="absolute left-2 lg:left-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors"
+                              className="absolute left-2 lg:left-4 top-1/2 transform -translate-y-1/2 p-2 bg-white/20 text-white rounded-full hover:bg-white/30 transition-colors"
                               aria-label="Previous image"
                             >
                               <ArrowLeft className="w-6 h-6" />
                             </button>
                             <button
                               onClick={nextImage}
-                              className="absolute right-2 lg:right-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors"
+                              className="absolute right-2 lg:right-4 top-1/2 transform -translate-y-1/2 p-2 bg-white/20 text-white rounded-full hover:bg-white/30 transition-colors"
                               aria-label="Next image"
                             >
                               <ArrowRight className="w-6 h-6" />
@@ -250,11 +248,11 @@ const Experience = () => {
               </div>
 
               {/* Sidebar with categories and thumbnails */}
-              <div className="w-full lg:w-80 bg-gray-800 p-4 lg:p-6 overflow-y-auto max-h-[40vh] lg:max-h-[70vh]">
+              <div className="w-full lg:w-80 bg-white/10 p-4 lg:p-6 overflow-y-auto max-h-[40vh] lg:max-h-[70vh]">
                 <div className="space-y-6">
                   {projectImages.map((category, categoryIndex) => (
                     <div key={categoryIndex}>
-                      <h4 className="text-cyan-400 font-semibold mb-3">{category.category}</h4>
+                      <h4 className="text-white font-semibold mb-3">{category.category}</h4>
                       <div className="grid grid-cols-2 gap-2">
                         {category.images.map((image, imageIndex) => {
                           const globalIndex = getAllImages().findIndex(
@@ -266,8 +264,8 @@ const Experience = () => {
                               onClick={() => setSelectedImageIndex(globalIndex)}
                               className={`relative overflow-hidden rounded-lg border-2 transition-all ${
                                 selectedImageIndex === globalIndex
-                                  ? 'border-cyan-500'
-                                  : 'border-gray-600 hover:border-gray-500'
+                                  ? 'border-white'
+                                  : 'border-white/30 hover:border-white/50'
                               }`}
                               aria-label={`View ${image.title}`}
                             >
@@ -292,10 +290,10 @@ const Experience = () => {
                   const allImages = getAllImages();
                   const currentImage = allImages[selectedImageIndex];
                   return (
-                    <div className="mt-6 p-4 bg-gray-700 rounded-lg">
+                    <div className="mt-6 p-4 bg-white/10 rounded-lg">
                       <h5 className="text-white font-semibold mb-2">{currentImage.title}</h5>
                       <p className="text-gray-300 text-sm mb-2">{currentImage.description}</p>
-                      <p className="text-cyan-400 text-xs">Category: {currentImage.category}</p>
+                      <p className="text-gray-400 text-xs">Category: {currentImage.category}</p>
                     </div>
                   );
                 })()}

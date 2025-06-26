@@ -1,3 +1,4 @@
+
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const About = () => {
@@ -11,7 +12,7 @@ const About = () => {
   ];
 
   return (
-        <section 
+    <section 
       id="about" 
       ref={ref}
       className={`py-20 px-4 transition-all duration-1000 ease-out ${
@@ -22,12 +23,10 @@ const About = () => {
     >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-              About Me
-            </span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            About Me
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full mx-auto" />
+          <div className="w-24 h-1 bg-white rounded-full mx-auto" />
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -45,14 +44,14 @@ const About = () => {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <div className="px-4 py-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 rounded-full">
-                <span className="text-cyan-300">Problem Solver</span>
+              <div className="px-4 py-2 bg-white/10 border border-white/20 rounded-full">
+                <span className="text-white">Problem Solver</span>
               </div>
-              <div className="px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-full">
-                <span className="text-purple-300">Fast Learner</span>
+              <div className="px-4 py-2 bg-white/10 border border-white/20 rounded-full">
+                <span className="text-white">Fast Learner</span>
               </div>
-              <div className="px-4 py-2 bg-gradient-to-r from-pink-500/20 to-cyan-500/20 border border-pink-500/30 rounded-full">
-                <span className="text-pink-300">Team Player</span>
+              <div className="px-4 py-2 bg-white/10 border border-white/20 rounded-full">
+                <span className="text-white">Team Player</span>
               </div>
             </div>
           </div>
@@ -61,9 +60,9 @@ const About = () => {
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="text-center p-6 bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-lg border border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-300 hover:scale-105"
+                className="text-center p-6 bg-white/5 border border-white/10 rounded-lg hover:border-white/20 transition-all duration-300 hover:scale-105"
               >
-                <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-2">
+                <div className="text-3xl font-bold text-white mb-2">
                   {stat.value}
                 </div>
                 <div className="text-gray-400 text-sm">{stat.label}</div>

@@ -1,12 +1,13 @@
+
 import { useState, useEffect } from 'react';
 import { Code, ArrowDown } from 'lucide-react';
-import { useIsMobile } from '../hooks/use-mobile'; // <-- import the hook
+import { useIsMobile } from '../hooks/use-mobile';
 
 const Hero = () => {
   const [text, setText] = useState('');
   const fullText = "Full-Stack Developer";
   const [showCursor, setShowCursor] = useState(true);
-  const isMobile = useIsMobile(); // <-- use the hook
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     let i = 0;
@@ -45,13 +46,13 @@ const Hero = () => {
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Text Content */}
         <div className="text-center md:text-left space-y-6 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30">
-            <Code className="w-4 h-4 text-cyan-400" />
-            <span className="text-sm text-cyan-300">Welcome to my portfolio</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20">
+            <Code className="w-4 h-4 text-white" />
+            <span className="text-sm text-gray-300">Welcome to my portfolio</span>
           </div>
           
           <h1 className="text-4xl md:text-6xl font-bold">
-            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="text-white">
               John Ashley
             </span>
             <br />
@@ -59,8 +60,8 @@ const Hero = () => {
           </h1>
           
           <div className="text-xl md:text-2xl text-gray-300 min-h-[2rem]">
-            <span className="text-cyan-400">{text}</span>
-            <span className={`text-cyan-400 ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity`}>|</span>
+            <span className="text-white">{text}</span>
+            <span className={`text-white ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity`}>|</span>
           </div>
           
           <p className="text-lg text-gray-400 max-w-md">
@@ -71,14 +72,14 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4">
             <button 
               onClick={scrollToExperience}
-              className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg text-white font-semibold hover:from-cyan-600 hover:to-purple-600 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25"
+              className="px-8 py-3 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-all duration-300 hover:scale-105"
             >
               View My Work
             </button>
             <a
               href="/Villanueva, John Ashley D. CV2Resume.pdf"
               download
-              className="px-8 py-3 border border-cyan-500 text-cyan-400 rounded-lg font-semibold hover:bg-cyan-500 hover:text-white transition-all duration-300 hover:scale-105 text-center"
+              className="px-8 py-3 border border-white text-white rounded-lg font-semibold hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 text-center"
             >
               Download CV
             </a>
@@ -88,22 +89,22 @@ const Hero = () => {
         {/* Photo */}
         <div className="flex justify-center">
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full blur-xl opacity-30 animate-pulse"></div>
-            <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-gradient-to-r from-cyan-500 to-purple-500 hover:scale-105 transition-transform duration-300">
+            <div className="absolute inset-0 bg-white/20 rounded-full blur-xl opacity-30 animate-pulse"></div>
+            <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-white/20 hover:scale-105 transition-transform duration-300">
               <img 
                 src="/imgs/144d392c-83e4-4ab9-8bf8-835966cd8bbe.png" 
                 alt="John Ashley Villanueva"
                 className="w-full h-full object-cover object-center"
               />
             </div>
-            <div className="absolute top-4 right-4 w-4 h-4 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
+            <div className="absolute top-4 right-4 w-4 h-4 bg-white rounded-full animate-pulse shadow-lg shadow-white/50"></div>
           </div>
         </div>
       </div>
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <ArrowDown className="w-6 h-6 text-cyan-400" />
+        <ArrowDown className="w-6 h-6 text-white" />
       </div>
     </section>
   );

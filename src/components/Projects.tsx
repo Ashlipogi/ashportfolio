@@ -8,7 +8,8 @@ const Projects = () => {
   const [showProjectModal, setShowProjectModal] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   
-const projects = [
+  // ... keep existing code (projects array and projectImages array)
+  const projects = [
     {
         title: 'Capstone Project - Integrated Management System',
         subtitle: 'Item Inventory, Transfer & Returns Management',
@@ -33,34 +34,8 @@ const projects = [
             'PHP',
         ],
         hasProject: true
-    },
-    // {
-    //     title: 'Capstone Project - Integrated Management System',
-    //     subtitle: 'Item Inventory, Transfer & Returns Management',
-    //     period: '2024 - 2025',
-    //     description:
-    //         'A comprehensive management system that integrates three core modules: Item Inventory Management, Item Transfer System, and Returned Items Management. This project demonstrates full-stack development capabilities using React, Inertia.js, and modern web technologies.',
-    //     achievements: [
-    //         'Developed integrated dashboard with real-time statistics and analytics',
-    //         'Implemented comprehensive user authentication and role-based access control',
-    //         'Created robust inventory tracking with category management and supplier integration',
-    //         'Built item transfer system with approval workflows and tracking',
-    //         'Designed returned items management with condition tracking and reporting',
-    //         'Integrated print functionality for reports and transfer documents',
-    //         'Implemented advanced search, filtering, and pagination features'
-    //     ],
-    //     technologies: [
-    //         'React.js',
-    //         'Inertia.js',
-    //         'Laravel Framework',
-    //         'MySQL Database',
-    //         'Tailwind CSS',
-    //         'PHP',
-    //     ],
-    //     hasProject: true
-    // }
-    
-];
+    }
+  ];
 
   const projectImages = [
     {
@@ -115,6 +90,7 @@ const projects = [
     }
   ];
 
+  // ... keep existing code (getAllImages, nextImage, prevImage, openProjectModal, closeProjectModal functions)
   const getAllImages = () => {
     return projectImages.flatMap(category => 
       category.images.map(img => ({ ...img, category: category.category }))
@@ -146,7 +122,7 @@ const projects = [
       <section 
         id="projects" 
         ref={ref}
-        className={`py-20 px-4 bg-gradient-to-b from-gray-900/50 to-transparent transition-all duration-1000 ease-out ${
+        className={`py-20 px-4 bg-white/5 transition-all duration-1000 ease-out ${
           isVisible 
             ? 'opacity-100 translate-y-0' 
             : 'opacity-0 translate-y-10'
@@ -154,12 +130,10 @@ const projects = [
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                Major Projects
-              </span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+              Major Projects
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full mx-auto mb-6" />
+            <div className="w-24 h-1 bg-white rounded-full mx-auto mb-6" />
             <p className="text-gray-400 max-w-2xl mx-auto">
               Comprehensive projects showcasing full-stack development capabilities and system integration
             </p>
@@ -169,18 +143,18 @@ const projects = [
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="group relative p-8 bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl border border-gray-700 hover:border-purple-500/50 transition-all duration-300 hover:scale-105"
+                className="group relative p-8 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-all duration-300 hover:scale-105"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-cyan-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
                 <div className="relative z-10">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
                     <div className="flex-1">
                       <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                      <p className="text-purple-400 font-medium text-lg">{project.subtitle}</p>
+                      <p className="text-gray-300 font-medium text-lg">{project.subtitle}</p>
                     </div>
                     <div className="mt-4 md:mt-0">
-                      <span className="inline-block px-3 py-1 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-500/30 rounded-full text-sm text-purple-300">
+                      <span className="inline-block px-3 py-1 bg-white/10 border border-white/20 rounded-full text-sm text-gray-300">
                         {project.period}
                       </span>
                     </div>
@@ -189,11 +163,11 @@ const projects = [
                   <p className="text-gray-300 mb-6 leading-relaxed">{project.description}</p>
                   
                   <div className="mb-6">
-                    <h4 className="text-cyan-400 font-medium mb-3">Key Features & Achievements:</h4>
+                    <h4 className="text-white font-medium mb-3">Key Features & Achievements:</h4>
                     <ul className="space-y-2">
                       {project.achievements.map((achievement, achievementIndex) => (
                         <li key={achievementIndex} className="flex items-start gap-3 text-gray-400">
-                          <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-2 flex-shrink-0" />
+                          <div className="w-1.5 h-1.5 bg-white rounded-full mt-2 flex-shrink-0" />
                           <span>{achievement}</span>
                         </li>
                       ))}
@@ -201,12 +175,12 @@ const projects = [
                   </div>
 
                   <div className="mb-6">
-                    <h4 className="text-cyan-400 font-medium mb-3">Technologies Used:</h4>
+                    <h4 className="text-white font-medium mb-3">Technologies Used:</h4>
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech, techIndex) => (
                         <span
                           key={techIndex}
-                          className="px-3 py-1 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 rounded-full text-sm text-cyan-300"
+                          className="px-3 py-1 bg-white/10 border border-white/20 rounded-full text-sm text-gray-300"
                         >
                           {tech}
                         </span>
@@ -217,7 +191,7 @@ const projects = [
                   {project.hasProject && (
                     <button
                       onClick={openProjectModal}
-                      className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
+                      className="px-6 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-all duration-300 hover:scale-105"
                     >
                       View Project Screenshots
                     </button>
@@ -232,7 +206,7 @@ const projects = [
       {/* Project Modal */}
       {showProjectModal && (
         <div
-          className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-2"
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-2"
           style={{ height: '100dvh', width: '100vw' }}
           tabIndex={-1}
           onKeyDown={e => {
@@ -250,7 +224,7 @@ const projects = [
             <div className="flex items-center justify-between p-3 border-b border-gray-700 bg-gray-900 sticky top-0 z-20">
               <div>
                 <h3 className="text-2xl font-bold text-white">Capstone Project</h3>
-                <p className="text-cyan-400">Integrated Management System - Inventory, Transfer & Returns</p>
+                <p className="text-gray-300">Integrated Management System - Inventory, Transfer & Returns</p>
               </div>
               <button
                 onClick={closeProjectModal}
@@ -305,7 +279,7 @@ const projects = [
                 <div className="space-y-6">
                   {projectImages.map((category, categoryIndex) => (
                     <div key={categoryIndex}>
-                      <h4 className="text-cyan-400 font-semibold mb-3">{category.category}</h4>
+                      <h4 className="text-white font-semibold mb-3">{category.category}</h4>
                       <div className="grid grid-cols-2 gap-2">
                         {category.images.map((image, imageIndex) => {
                           const globalIndex = getAllImages().findIndex(
@@ -317,7 +291,7 @@ const projects = [
                               onClick={() => setSelectedImageIndex(globalIndex)}
                               className={`relative overflow-hidden rounded-lg border-2 transition-all ${
                                 selectedImageIndex === globalIndex
-                                  ? 'border-cyan-500'
+                                  ? 'border-white'
                                   : 'border-gray-600 hover:border-gray-500'
                               }`}
                               aria-label={`View ${image.title}`}
@@ -346,7 +320,7 @@ const projects = [
                     <div className="mt-6 p-4 bg-gray-700 rounded-lg">
                       <h5 className="text-white font-semibold mb-2">{currentImage.title}</h5>
                       <p className="text-gray-300 text-sm mb-2">{currentImage.description}</p>
-                      <p className="text-cyan-400 text-xs">Category: {currentImage.category}</p>
+                      <p className="text-gray-400 text-xs">Category: {currentImage.category}</p>
                     </div>
                   );
                 })()}
