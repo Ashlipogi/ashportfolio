@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { X, ArrowLeft, ArrowRight } from 'lucide-react';
@@ -6,6 +7,7 @@ const Projects = () => {
   const [ref, isVisible] = useScrollAnimation();
   const [showProjectModal, setShowProjectModal] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [selectedProject, setSelectedProject] = useState<number>(0);
   
   const projects = [
     {
@@ -31,65 +33,150 @@ const Projects = () => {
             'Tailwind CSS',
             'PHP',
         ],
-        hasProject: true
+        hasProject: true,
+        projectId: 0
+    },
+    {
+        title: 'RedShop - Affiliate Business Automation System',
+        subtitle: 'E-commerce Affiliate Product Management & Platform Integration',
+        period: '2024 - 2025',
+        description:
+            'A comprehensive affiliate business automation system designed to streamline the management and display of affiliate products. The system allows administrators to create, manage, and showcase affiliate products with integrated platform selection (TikTok & Shopee) for seamless e-commerce transitions.',
+        achievements: [
+            'Built secure admin authentication system with role-based access',
+            'Developed comprehensive product management dashboard with real-time statistics',
+            'Created dynamic product catalog with category filtering and search functionality',
+            'Implemented platform selection modal for TikTok and Shopee integration',
+            'Designed responsive frontend with gradient backgrounds and modern UI',
+            'Built product carousel with navigation controls and category organization',
+            'Integrated TikTok embed functionality for product demonstrations',
+            'Developed admin panel for adding, editing, and managing affiliate products'
+        ],
+        technologies: [
+            'PHP Native',
+            'HTML5',
+            'CSS3',
+            'MySQL Database',
+            'JavaScript',
+            'Responsive Design',
+        ],
+        hasProject: true,
+        projectId: 1
     }
   ];
 
-  const projectImages = [
+  const allProjectImages = [
+    // Capstone Project Images
     {
-      category: 'Authentication & Login',
-      images: [
-        { src: '/imgs/inv/Screenshot 2025-06-24 211513.png', title: 'Login Page', description: 'Secure login interface with remember me functionality and password recovery' }
+      projectId: 0,
+      categories: [
+        {
+          category: 'Authentication & Login',
+          images: [
+            { src: '/imgs/inv/Screenshot 2025-06-24 211513.png', title: 'Login Page', description: 'Secure login interface with remember me functionality and password recovery' }
+          ]
+        },
+        {
+          category: 'Dashboard & Analytics',
+          images: [
+            { src: '/imgs/inv/Screenshot 2025-06-24 211652.png', title: 'Main Dashboard', description: 'Comprehensive overview with statistics for categories, suppliers, items, borrowed items, overdue items, and transferred items' }
+          ]
+        },
+        {
+          category: 'Category Management',
+          images: [
+            { src: '/imgs/inv/Screenshot 2025-06-24 211711.png', title: 'Categories Management', description: 'Add new categories and view all existing categories with management options' }
+          ]
+        },
+        {
+          category: 'Supplier Management',
+          images: [
+            { src: '/imgs/inv/Screenshot 2025-06-24 211719.png', title: 'Suppliers List', description: 'Complete supplier database with contact information, address, and action buttons' }
+          ]
+        },
+        {
+          category: 'Item Inventory',
+          images: [
+            { src: '/imgs/inv/Screenshot 2025-06-24 211732.png', title: 'Items Management', description: 'Comprehensive item listing with advanced filtering, search, and pagination features' }
+          ]
+        },
+        {
+          category: 'Item Transfer System',
+          images: [
+            { src: '/imgs/inv/Screenshot 2025-06-24 212059.png', title: 'Item Borrow Form', description: 'Add new item borrow requests with date selection and item search functionality' },
+            { src: '/imgs/inv/Screenshot 2025-06-24 212121.png', title: 'Signatory Management', description: 'Manage authorized signatories for transfer approvals and documentation' }
+          ]
+        },
+        {
+          category: 'Reports & Documentation',
+          images: [
+            { src: '/imgs/inv/Screenshot 2025-06-24 212108.png', title: 'Item Reports', description: 'Generate detailed reports with filtering options and total amount calculations' },
+            { src: '/imgs/inv/Screenshot 2025-06-24 212149.png', title: 'Print Document', description: 'Printable transfer documents with official formatting and signatory sections' }
+          ]
+        },
+        {
+          category: 'Profile Management',
+          images: [
+            { src: '/imgs/inv/Screenshot 2025-06-24 212159.png', title: 'Profile Settings', description: 'User profile management with personal information updates and password change functionality' }
+          ]
+        }
       ]
     },
+    // RedShop Affiliate System Images
     {
-      category: 'Dashboard & Analytics',
-      images: [
-        { src: '/imgs/inv/Screenshot 2025-06-24 211652.png', title: 'Main Dashboard', description: 'Comprehensive overview with statistics for categories, suppliers, items, borrowed items, overdue items, and transferred items' }
-      ]
-    },
-    {
-      category: 'Category Management',
-      images: [
-        { src: '/imgs/inv/Screenshot 2025-06-24 211711.png', title: 'Categories Management', description: 'Add new categories and view all existing categories with management options' }
-      ]
-    },
-    {
-      category: 'Supplier Management',
-      images: [
-        { src: '/imgs/inv/Screenshot 2025-06-24 211719.png', title: 'Suppliers List', description: 'Complete supplier database with contact information, address, and action buttons' }
-      ]
-    },
-    {
-      category: 'Item Inventory',
-      images: [
-        { src: '/imgs/inv/Screenshot 2025-06-24 211732.png', title: 'Items Management', description: 'Comprehensive item listing with advanced filtering, search, and pagination features' }
-      ]
-    },
-    {
-      category: 'Item Transfer System',
-      images: [
-        { src: '/imgs/inv/Screenshot 2025-06-24 212059.png', title: 'Item Borrow Form', description: 'Add new item borrow requests with date selection and item search functionality' },
-        { src: '/imgs/inv/Screenshot 2025-06-24 212121.png', title: 'Signatory Management', description: 'Manage authorized signatories for transfer approvals and documentation' }
-      ]
-    },
-    {
-      category: 'Reports & Documentation',
-      images: [
-        { src: '/imgs/inv/Screenshot 2025-06-24 212108.png', title: 'Item Reports', description: 'Generate detailed reports with filtering options and total amount calculations' },
-        { src: '/imgs/inv/Screenshot 2025-06-24 212149.png', title: 'Print Document', description: 'Printable transfer documents with official formatting and signatory sections' }
-      ]
-    },
-    {
-      category: 'Profile Management',
-      images: [
-        { src: '/imgs/inv/Screenshot 2025-06-24 212159.png', title: 'Profile Settings', description: 'User profile management with personal information updates and password change functionality' }
+      projectId: 1,
+      categories: [
+        {
+          category: 'Admin Authentication',
+          images: [
+            { src: '/imgs/reds/Screenshot 2025-06-26 122905.png', title: 'Admin Login', description: 'Secure admin login interface with dark theme and gradient design for system access' }
+          ]
+        },
+        {
+          category: 'Admin Dashboard',
+          images: [
+            { src: '/imgs/reds/Screenshot 2025-06-26 122918.png', title: 'Dashboard Overview', description: 'Admin dashboard with total products statistics, welcome message, and user profile dropdown menu' }
+          ]
+        },
+        {
+          category: 'Product Management',
+          images: [
+            { src: '/imgs/reds/Screenshot 2025-06-26 122945.png', title: 'Add New Product', description: 'Comprehensive product creation form with category, name, affiliate links, TikTok embed code, price, and photo upload fields' },
+            { src: '/imgs/reds/Screenshot 2025-06-26 123000.png', title: 'Products List', description: 'Product management interface showing all products with images, names, prices, affiliate/embed links, and action buttons' },
+            { src: '/imgs/reds/Screenshot 2025-06-26 123131.png', title: 'Edit Product', description: 'Product editing interface with pre-filled data including TikTok embed code and all product details for easy updates' }
+          ]
+        },
+        {
+          category: 'Frontend Store',
+          images: [
+            { src: '/imgs/reds/Screenshot 2025-06-26 123159.png', title: 'Store Homepage', description: 'Beautiful gradient homepage with welcome message, navigation menu, and featured products carousel section' },
+            { src: '/imgs/reds/Screenshot 2025-06-26 123210.png', title: 'Product Showcase', description: 'Product carousel display with navigation arrows showing featured items and promotional content' }
+          ]
+        },
+        {
+          category: 'Product Catalog & Search',
+          images: [
+            { src: '/imgs/reds/Screenshot 2025-06-26 123224.png', title: 'Products Page', description: 'Product catalog with category filtering (All, Tops, Bags, Lights), search functionality, and product grid with prices and visit buttons' },
+            { src: '/imgs/reds/Screenshot 2025-06-26 123326.png', title: 'Platform Selection', description: 'Modal popup allowing customers to choose between TikTok and Shopee platforms for product purchase' }
+          ]
+        },
+        {
+          category: 'TikTok Integration',
+          images: [
+            { src: '/imgs/reds/Screenshot 2025-06-26 123502.png', title: 'TikTok Product Demo', description: 'Embedded TikTok video player showing product demonstration with Filipino language content and social engagement features' }
+          ]
+        }
       ]
     }
   ];
+
+  const getCurrentProjectImages = () => {
+    return allProjectImages.find(project => project.projectId === selectedProject)?.categories || [];
+  };
 
   const getAllImages = () => {
-    return projectImages.flatMap(category => 
+    const currentProjectImages = getCurrentProjectImages();
+    return currentProjectImages.flatMap(category => 
       category.images.map(img => ({ ...img, category: category.category }))
     );
   };
@@ -104,7 +191,8 @@ const Projects = () => {
     setSelectedImageIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
   };
 
-  const openProjectModal = () => {
+  const openProjectModal = (projectId: number) => {
+    setSelectedProject(projectId);
     setShowProjectModal(true);
     setSelectedImageIndex(0);
   };
@@ -187,7 +275,7 @@ const Projects = () => {
 
                   {project.hasProject && (
                     <button
-                      onClick={openProjectModal}
+                      onClick={() => openProjectModal(project.projectId)}
                       className="px-6 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-all duration-300 hover:scale-105"
                     >
                       View Project Screenshots
@@ -220,8 +308,8 @@ const Projects = () => {
             {/* Modal Header */}
             <div className="flex items-center justify-between p-3 border-b border-white/20 bg-black/90 sticky top-0 z-20">
               <div>
-                <h3 className="text-2xl font-bold text-white">Capstone Project</h3>
-                <p className="text-gray-300">Integrated Management System - Inventory, Transfer & Returns</p>
+                <h3 className="text-2xl font-bold text-white">{projects[selectedProject]?.title}</h3>
+                <p className="text-gray-300">{projects[selectedProject]?.subtitle}</p>
               </div>
               <button
                 onClick={closeProjectModal}
@@ -239,6 +327,7 @@ const Projects = () => {
                   {(() => {
                     const allImages = getAllImages();
                     const currentImage = allImages[selectedImageIndex];
+                    if (!currentImage) return null;
                     return (
                       <div className="relative w-full h-full flex items-center justify-center">
                         <img
@@ -274,7 +363,7 @@ const Projects = () => {
               {/* Sidebar with categories and thumbnails */}
               <div className="w-full lg:w-80 bg-white/10 p-4 lg:p-6 overflow-y-auto max-h-[40vh] lg:max-h-[70vh]">
                 <div className="space-y-6">
-                  {projectImages.map((category, categoryIndex) => (
+                  {getCurrentProjectImages().map((category, categoryIndex) => (
                     <div key={categoryIndex}>
                       <h4 className="text-white font-semibold mb-3">{category.category}</h4>
                       <div className="grid grid-cols-2 gap-2">
@@ -313,6 +402,7 @@ const Projects = () => {
                 {(() => {
                   const allImages = getAllImages();
                   const currentImage = allImages[selectedImageIndex];
+                  if (!currentImage) return null;
                   return (
                     <div className="mt-6 p-4 bg-white/10 rounded-lg">
                       <h5 className="text-white font-semibold mb-2">{currentImage.title}</h5>
