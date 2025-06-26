@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { X, ArrowLeft, ArrowRight } from 'lucide-react';
@@ -5,9 +6,11 @@ import { X, ArrowLeft, ArrowRight } from 'lucide-react';
 const Experience = () => {
   const [ref, isVisible] = useScrollAnimation();
   const [showProjectModal, setShowProjectModal] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   
   const experiences = [
+    // ... keep existing code (first experience item)
     {
       title: 'Photocopy Shop Assistant',
       company: 'Local Business',
@@ -28,7 +31,9 @@ const Experience = () => {
         'Worked with HTML, CSS, JavaScript, and PHP to build dynamic web pages',
         'Contributed to backend development using Laravel and managed databases',
         'Tested and debugged applications to ensure optimal performance'
-      ]
+      ],
+      hasProject: true,
+      projectKey: 'aia'
     },
     {
       title: 'System Developer',
@@ -40,73 +45,206 @@ const Experience = () => {
         'Created user-friendly interfaces to simplify data entry and improve efficiency for employees',
         'Collaborated with the team to ensure smooth implementation and functionality'
       ],
-      hasProject: true
+      hasProject: true,
+      projectKey: 'tmobelli'
     }
   ];
 
-  const projectImages = [
-    {
-      category: 'Dashboard & Overview',
+  const projects = {
+    aia: {
+      title: 'AIA Philippines',
+      subtitle: 'SDA Management System',
       images: [
-        { src: '/imgs/pos/Screenshot 2025-06-24 111103.png', title: 'Main Dashboard', description: 'Overview of total vendors, items, and purchase orders with statistics' }
+        {
+          category: 'Authentication & Homepage',
+          images: [
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 142054.png', 
+              title: 'Login Portal', 
+              description: 'Secure authentication system with SDA branding and user credentials' 
+            },
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 142005.png', 
+              title: 'Homepage Welcome', 
+              description: 'Main landing page showcasing the online community and agency performance' 
+            }
+          ]
+        },
+        {
+          category: 'News & Media Management',
+          images: [
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 142937.png', 
+              title: 'News & Media Section', 
+              description: 'Content management for news, events, and triumphs with filtering options' 
+            },
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 143239.png', 
+              title: 'Timeline View', 
+              description: 'Historical timeline showing company milestones and achievements from 2005-2018' 
+            },
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 142900.png', 
+              title: 'Add News Modal', 
+              description: 'Interface for adding new news items with embed code functionality' 
+            },
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 142912.png', 
+              title: 'News Management', 
+              description: 'News, events, and triumphs management with success notifications' 
+            },
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 142920.png', 
+              title: 'Edit News Modal', 
+              description: 'News editing interface with Facebook embed integration' 
+            }
+          ]
+        },
+        {
+          category: 'Member Management System',
+          images: [
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 142318.png', 
+              title: 'Branch Managers Dashboard', 
+              description: 'Overview of Makati branch managers with profile management and action buttons' 
+            },
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 142558.png', 
+              title: 'Members Overview', 
+              description: 'Complete view of branch managers and employees with profile cards and management tools' 
+            },
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 142626.png', 
+              title: 'Add New Employee', 
+              description: 'Employee registration form with manager selection, education background, and skills tracking' 
+            },
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 142324.png', 
+              title: 'Edit Branch Manager', 
+              description: 'Manager profile editing interface with detailed information and file upload capabilities' 
+            },
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 142615.png', 
+              title: 'Add Branch Manager', 
+              description: 'New manager registration form with education background and skills management' 
+            },
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 143005.png', 
+              title: 'Makati Branch View', 
+              description: 'Branch-specific view showing managers and employee hierarchy' 
+            },
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 143201.png', 
+              title: 'Employee Background Modal', 
+              description: 'Detailed employee background information display with education and skills' 
+            },
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 142636.png', 
+              title: 'Edit Employee Profile', 
+              description: 'Comprehensive employee editing form with rich text editors for background and skills' 
+            },
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 143146.png', 
+              title: 'Manager Background Modal', 
+              description: 'Manager background information display showing education and key skills' 
+            }
+          ]
+        },
+        {
+          category: 'Customer Inquiries',
+          images: [
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 142702.png', 
+              title: 'Customer Inquiries Dashboard', 
+              description: 'Management interface for tracking customer inquiries with detailed fields' 
+            }
+          ]
+        },
+        {
+          category: 'Contact & Location Services',
+          images: [
+            { 
+              src: '/imgs/aia/Screenshot 2025-06-26 143301.png', 
+              title: 'Contact & Branch Locations', 
+              description: 'Contact form and branch location finder with integrated mapping for SDA offices' 
+            }   
+          ]
+        }
       ]
     },
-    {
-      category: 'Vendor Management',
+    tmobelli: {
+      title: 'T-Mobelli Kitchens & Closets Inc.',
+      subtitle: 'Purchase Order Management System (POMS)',
       images: [
-        { src: '/imgs/pos/Screenshot 2025-06-24 111121.png', title: 'Vendors List', description: 'Complete vendor management with contact information and actions' },
-        { src: '/imgs/pos/Screenshot 2025-06-24 111245.png', title: 'Register New Vendor', description: 'Form to add new vendors with contact details' },
-        { src: '/imgs/pos/Screenshot 2025-06-24 111143.png', title: 'Vendor Actions', description: 'Edit, view, and delete vendor options' }
-      ]
-    },
-    {
-      category: 'Item Management', 
-      images: [
-        { src: '/imgs/pos/Screenshot 2025-06-24 111133.png', title: 'Items List', description: 'Product catalog with descriptions and pagination' },
-        { src: '/imgs/pos/Screenshot 2025-06-24 111229.png', title: 'Create New Item', description: 'Form to add new items to the inventory' }
-      ]
-    },
-    {
-      category: 'Purchase Orders',
-      images: [
-        { src: '/imgs/pos/Screenshot 2025-06-24 111152.png', title: 'Purchase Orders List', description: 'Track all purchase orders with vendor details and amounts' },
-        { src: '/imgs/pos/Screenshot 2025-06-24 111219.png', title: 'New Purchase Order', description: 'Create new purchase orders with item selection' }
-      ]
-    },
-    {
-      category: 'System Settings',
-      images: [
-        { src: '/imgs/pos/Screenshot 2025-06-24 111205.png', title: 'System Configuration', description: 'System information and logo management settings' }
+        // ... keep existing code (tmobelli project images)
+        {
+          category: 'Dashboard & Overview',
+          images: [
+            { src: '/imgs/pos/Screenshot 2025-06-24 111103.png', title: 'Main Dashboard', description: 'Overview of total vendors, items, and purchase orders with statistics' }
+          ]
+        },
+        {
+          category: 'Vendor Management',
+          images: [
+            { src: '/imgs/pos/Screenshot 2025-06-24 111121.png', title: 'Vendors List', description: 'Complete vendor management with contact information and actions' },
+            { src: '/imgs/pos/Screenshot 2025-06-24 111245.png', title: 'Register New Vendor', description: 'Form to add new vendors with contact details' },
+            { src: '/imgs/pos/Screenshot 2025-06-24 111143.png', title: 'Vendor Actions', description: 'Edit, view, and delete vendor options' }
+          ]
+        },
+        {
+          category: 'Item Management', 
+          images: [
+            { src: '/imgs/pos/Screenshot 2025-06-24 111133.png', title: 'Items List', description: 'Product catalog with descriptions and pagination' },
+            { src: '/imgs/pos/Screenshot 2025-06-24 111229.png', title: 'Create New Item', description: 'Form to add new items to the inventory' }
+          ]
+        },
+        {
+          category: 'Purchase Orders',
+          images: [
+            { src: '/imgs/pos/Screenshot 2025-06-24 111152.png', title: 'Purchase Orders List', description: 'Track all purchase orders with vendor details and amounts' },
+            { src: '/imgs/pos/Screenshot 2025-06-24 111219.png', title: 'New Purchase Order', description: 'Create new purchase orders with item selection' }
+          ]
+        },
+        {
+          category: 'System Settings',
+          images: [
+            { src: '/imgs/pos/Screenshot 2025-06-24 111205.png', title: 'System Configuration', description: 'System information and logo management settings' }
+          ]
+        }
       ]
     }
-  ];
+  };
 
-  const getAllImages = () => {
-    return projectImages.flatMap(category => 
+  // ... keep existing code (getAllImages function and navigation functions)
+  const getAllImages = (projectKey) => {
+    return projects[projectKey].images.flatMap(category => 
       category.images.map(img => ({ ...img, category: category.category }))
     );
   };
 
   const nextImage = () => {
-    const allImages = getAllImages();
+    const allImages = getAllImages(selectedProject);
     setSelectedImageIndex((prev) => (prev + 1) % allImages.length);
   };
 
   const prevImage = () => {
-    const allImages = getAllImages();
+    const allImages = getAllImages(selectedProject);
     setSelectedImageIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
   };
 
-  const openProjectModal = () => {
+  const openProjectModal = (projectKey) => {
+    setSelectedProject(projectKey);
     setShowProjectModal(true);
     setSelectedImageIndex(0);
   };
 
   const closeProjectModal = () => {
     setShowProjectModal(false);
+    setSelectedProject(null);
     setSelectedImageIndex(0);
   };
 
+  // ... keep existing code (render section and modal)
    return (
     <>
       <section 
@@ -163,7 +301,7 @@ const Experience = () => {
 
                   {exp.hasProject && (
                     <button
-                      onClick={openProjectModal}
+                      onClick={() => openProjectModal(exp.projectKey)}
                       className="px-6 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-all duration-300 hover:scale-105"
                     >
                       View Project Screenshots
@@ -177,7 +315,7 @@ const Experience = () => {
       </section>
 
       {/* Project Modal */}
-      {showProjectModal && (
+      {showProjectModal && selectedProject && (
         <div
           className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-2"
           style={{ height: '100dvh', width: '100vw' }}
@@ -196,8 +334,8 @@ const Experience = () => {
             {/* Modal Header */}
             <div className="flex items-center justify-between p-3 border-b border-white/20 bg-black/90 sticky top-0 z-20">
               <div>
-                <h3 className="text-2xl font-bold text-white">T-Mobelli Kitchens & Closets Inc.</h3>
-                <p className="text-gray-300">Purchase Order Management System (POMS)</p>
+                <h3 className="text-2xl font-bold text-white">{projects[selectedProject].title}</h3>
+                <p className="text-gray-300">{projects[selectedProject].subtitle}</p>
               </div>
               <button
                 onClick={closeProjectModal}
@@ -213,7 +351,7 @@ const Experience = () => {
               <div className="flex-1 relative bg-black flex items-center justify-center min-h-[300px]">
                 <div className="relative w-full h-[40vh] lg:h-[70vh] flex items-center justify-center p-2 lg:p-4">
                   {(() => {
-                    const allImages = getAllImages();
+                    const allImages = getAllImages(selectedProject);
                     const currentImage = allImages[selectedImageIndex];
                     return (
                       <div className="relative w-full h-full flex items-center justify-center">
@@ -250,12 +388,12 @@ const Experience = () => {
               {/* Sidebar with categories and thumbnails */}
               <div className="w-full lg:w-80 bg-white/10 p-4 lg:p-6 overflow-y-auto max-h-[40vh] lg:max-h-[70vh]">
                 <div className="space-y-6">
-                  {projectImages.map((category, categoryIndex) => (
+                  {projects[selectedProject].images.map((category, categoryIndex) => (
                     <div key={categoryIndex}>
                       <h4 className="text-white font-semibold mb-3">{category.category}</h4>
                       <div className="grid grid-cols-2 gap-2">
                         {category.images.map((image, imageIndex) => {
-                          const globalIndex = getAllImages().findIndex(
+                          const globalIndex = getAllImages(selectedProject).findIndex(
                             img => img.src === image.src && img.title === image.title
                           );
                           return (
@@ -287,7 +425,7 @@ const Experience = () => {
 
                 {/* Current Image Info */}
                 {(() => {
-                  const allImages = getAllImages();
+                  const allImages = getAllImages(selectedProject);
                   const currentImage = allImages[selectedImageIndex];
                   return (
                     <div className="mt-6 p-4 bg-white/10 rounded-lg">

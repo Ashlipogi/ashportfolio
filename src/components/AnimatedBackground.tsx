@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -159,13 +158,13 @@ const AnimatedBackground = () => {
   }, [isMobile]);
 
   return (
-    <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
+    <div className="fixed inset-0 w-full h-full z-0 pointer-events-none touch-none">
       {/* Clean black background */}
-      <div className="absolute inset-0 bg-black" />
+      <div className="absolute inset-0 bg-black pointer-events-none touch-none" />
       
       {/* Subtle gradient overlay */}
       <div 
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-30 pointer-events-none touch-none"
         style={{
           background: `
             radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
@@ -178,7 +177,7 @@ const AnimatedBackground = () => {
       {/* Animated canvas */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full pointer-events-none touch-none"
       />
     </div>
   );
