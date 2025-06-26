@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { X, ArrowLeft, ArrowRight } from 'lucide-react';
@@ -8,7 +7,6 @@ const Projects = () => {
   const [showProjectModal, setShowProjectModal] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   
-  // ... keep existing code (projects array and projectImages array)
   const projects = [
     {
         title: 'Capstone Project - Integrated Management System',
@@ -90,7 +88,6 @@ const Projects = () => {
     }
   ];
 
-  // ... keep existing code (getAllImages, nextImage, prevImage, openProjectModal, closeProjectModal functions)
   const getAllImages = () => {
     return projectImages.flatMap(category => 
       category.images.map(img => ({ ...img, category: category.category }))
@@ -206,7 +203,7 @@ const Projects = () => {
       {/* Project Modal */}
       {showProjectModal && (
         <div
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-2"
+          className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-2"
           style={{ height: '100dvh', width: '100vw' }}
           tabIndex={-1}
           onKeyDown={e => {
@@ -216,12 +213,12 @@ const Projects = () => {
           }}
         >
           <div
-            className="relative w-full h-full max-w-[1200px] max-h-[95dvh] bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden flex flex-col"
+            className="relative w-full h-full max-w-[1200px] max-h-[95dvh] bg-black/90 border border-white/20 rounded-2xl overflow-hidden flex flex-col"
             style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.5)' }}
             onClick={e => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="flex items-center justify-between p-3 border-b border-gray-700 bg-gray-900 sticky top-0 z-20">
+            <div className="flex items-center justify-between p-3 border-b border-white/20 bg-black/90 sticky top-0 z-20">
               <div>
                 <h3 className="text-2xl font-bold text-white">Capstone Project</h3>
                 <p className="text-gray-300">Integrated Management System - Inventory, Transfer & Returns</p>
@@ -254,14 +251,14 @@ const Projects = () => {
                           <>
                             <button
                               onClick={prevImage}
-                              className="absolute left-2 lg:left-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors"
+                              className="absolute left-2 lg:left-4 top-1/2 transform -translate-y-1/2 p-2 bg-white/20 text-white rounded-full hover:bg-white/30 transition-colors"
                               aria-label="Previous image"
                             >
                               <ArrowLeft className="w-6 h-6" />
                             </button>
                             <button
                               onClick={nextImage}
-                              className="absolute right-2 lg:right-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors"
+                              className="absolute right-2 lg:right-4 top-1/2 transform -translate-y-1/2 p-2 bg-white/20 text-white rounded-full hover:bg-white/30 transition-colors"
                               aria-label="Next image"
                             >
                               <ArrowRight className="w-6 h-6" />
@@ -275,7 +272,7 @@ const Projects = () => {
               </div>
 
               {/* Sidebar with categories and thumbnails */}
-              <div className="w-full lg:w-80 bg-gray-800 p-4 lg:p-6 overflow-y-auto max-h-[40vh] lg:max-h-[70vh]">
+              <div className="w-full lg:w-80 bg-white/10 p-4 lg:p-6 overflow-y-auto max-h-[40vh] lg:max-h-[70vh]">
                 <div className="space-y-6">
                   {projectImages.map((category, categoryIndex) => (
                     <div key={categoryIndex}>
@@ -292,7 +289,7 @@ const Projects = () => {
                               className={`relative overflow-hidden rounded-lg border-2 transition-all ${
                                 selectedImageIndex === globalIndex
                                   ? 'border-white'
-                                  : 'border-gray-600 hover:border-gray-500'
+                                  : 'border-white/30 hover:border-white/50'
                               }`}
                               aria-label={`View ${image.title}`}
                             >
@@ -317,7 +314,7 @@ const Projects = () => {
                   const allImages = getAllImages();
                   const currentImage = allImages[selectedImageIndex];
                   return (
-                    <div className="mt-6 p-4 bg-gray-700 rounded-lg">
+                    <div className="mt-6 p-4 bg-white/10 rounded-lg">
                       <h5 className="text-white font-semibold mb-2">{currentImage.title}</h5>
                       <p className="text-gray-300 text-sm mb-2">{currentImage.description}</p>
                       <p className="text-gray-400 text-xs">Category: {currentImage.category}</p>
