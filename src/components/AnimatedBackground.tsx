@@ -122,7 +122,7 @@ const AnimatedBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className={`fixed inset-0 w-full h-full z-0 ${!isMobile ? 'pointer-events-none' : ''}`}
+      className="fixed inset-0 w-full h-full z-0 pointer-events-none"
       style={{ background: 'linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%)' }}
     />
   );
