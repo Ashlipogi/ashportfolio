@@ -158,13 +158,10 @@ const AnimatedBackground = () => {
   }, [isMobile]);
 
   return (
-    <div className="fixed inset-0 w-full h-full z-0 pointer-events-none touch-none">
-      {/* Clean black background */}
-      <div className="absolute inset-0 bg-black pointer-events-none touch-none" />
-      
-      {/* Subtle gradient overlay */}
+    <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
+      <div className="absolute inset-0 bg-black pointer-events-none" />
       <div 
-        className="absolute inset-0 opacity-30 pointer-events-none touch-none"
+        className="absolute inset-0 opacity-30 pointer-events-none"
         style={{
           background: `
             radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
@@ -173,11 +170,10 @@ const AnimatedBackground = () => {
           `
         }}
       />
-      
-      {/* Animated canvas */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full pointer-events-none touch-none"
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        tabIndex={-1}
       />
     </div>
   );

@@ -36,7 +36,7 @@ const Experience = () => {
       projectKey: 'aia'
     },
     {
-      title: 'System Developer',
+      title: 'Web Developer',
       company: 'T-Mobelli Kitchens & Closets Inc.',
       period: 'August 2024 - November 2024',
       description: 'Developed an automated system to streamline product management, including inventory, costing, and purchase order systems.',
@@ -435,8 +435,8 @@ const Experience = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
               Work Experience
             </h2>
-            <div className="w-24 h-1 bg-white rounded-full mx-auto mb-6" />
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-white to-transparent rounded-full mx-auto animate-scale-in" />
+            <p className="text-gray-400 max-w-2xl mt-4 mx-auto">
               My professional journey and the impact I've made in various roles
             </p>
           </div>
@@ -498,8 +498,8 @@ const Experience = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
               Major Projects
             </h2>
-            <div className="w-24 h-1 bg-white rounded-full mx-auto mb-6" />
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-white to-transparent rounded-full mx-auto animate-scale-in" />
+            <p className="text-gray-400 max-w-2xl mt-4 mx-auto">
               Comprehensive projects showcasing full-stack development capabilities and system integration
             </p>
           </div>

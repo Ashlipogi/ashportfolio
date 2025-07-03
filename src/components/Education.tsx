@@ -56,8 +56,8 @@ const Education = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
             Education
           </h2>
-          <div className="w-24 h-1 bg-white rounded-full mx-auto mb-6" />
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-white to-transparent rounded-full mx-auto animate-scale-in" />
+          <p className="text-gray-400 max-w-2xl mt-4 mx-auto">
             My academic journey and the knowledge foundation that drives my passion for technology
           </p>
         </div>

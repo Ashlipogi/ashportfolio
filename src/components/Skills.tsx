@@ -125,8 +125,8 @@ const Skills = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
             Technical Skills
           </h2>
-          <div className="w-24 h-1 bg-white rounded-full mx-auto mb-6" />
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-white to-transparent rounded-full mx-auto animate-scale-in" />
+          <p className="text-gray-400 max-w-2xl mt-4 mx-auto">
             Here are the technologies and tools I work with to bring ideas to life
           </p>
         </div>
@@ -164,11 +164,11 @@ const Skills = () => {
 
         {/* Tools I'm Familiar With Section */}
         <div className="mt-16">
-          <h3 className="text-2xl font-semibold text-white text-center mb-8">
+          <h3 className="text-2xl font-semibold text-white text-center mb-4">
             Tools I'm Familiar With
           </h3>
-          
-          <div className="relative overflow-hidden">
+          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-white to-transparent rounded-full mx-auto animate-scale-in" />
+          <div className="relative overflow-hidden mt-4">
             <div className="flex animate-slide-left-infinite space-x-8 whitespace-nowrap min-w-max">
               {duplicatedToolsData.map((tool, index) => (
                 <div
