@@ -46,7 +46,6 @@ useEffect(() => {
         <About />
         <Skills />
         <Experience />
-        <Projects />
         <Education />
       </div>
     </div>

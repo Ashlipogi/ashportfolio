@@ -66,10 +66,6 @@ const Skills = () => {
       image: 'imgs/microsoft-office3327-removebg-preview.png'
     },
     { 
-      name: 'GitHub', 
-      image: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
-    },
-    { 
       name: 'Canva', 
       image: 'imgs/image2.webp'
     },
@@ -86,9 +82,29 @@ const Skills = () => {
       image: 'imgs/google-drive-logo-removebg-preview.png' 
     },
     { 
+      name: 'GitHub', 
+      image: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
+    },
+    { 
       name: 'AnyDesk', 
       image: 'imgs/images__1_-removebg-preview.png'
     },
+{ 
+  name: 'Vercel', 
+  image: 'https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png'
+},
+{ 
+  name: 'Cpanel', 
+  image: '/imgs/cpanel-removebg-preview (1).png'
+},
+{ 
+  name: 'FileZilla', 
+  image: '/imgs/filezilla-removebg-preview (2).png'
+},
+{ 
+  name: 'Laravel Cloud', 
+  image: '/imgs/image-removebg-preview (2).png'
+},
   ];
 
   // Duplicate the array to create seamless infinite scroll
