@@ -30,14 +30,23 @@ const Navigation = ({ activeSection }: NavigationProps) => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2 cursor-pointer" onClick={() => scrollToSection('hero')}>
-            <div className="p-2 bg-white/10 border border-white/20 rounded-lg">
-              <Code className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-xl font-bold text-white">
-              AshDev
-            </span>
-          </div>
+<div
+  className="flex items-center space-x-2 cursor-pointer"
+  onClick={() => scrollToSection('hero')}
+>
+  <div className="p-1 bg-white/10 border bg-white/80 border-black/50 rounded-lg">
+    <img
+      src="imgs/Logo Ash.png"
+      alt="AshDev Logo"
+      className="w-8 h-8 object-contain"
+  
+    />
+  </div>
+  <span className="text-xl font-bold text-white">
+    AshDev
+  </span>
+</div>
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
