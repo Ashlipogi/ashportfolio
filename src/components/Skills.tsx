@@ -114,7 +114,7 @@ const Skills = () => {
     <section 
       id="skills" 
       ref={ref}
-      className={`py-20 px-4 bg-white/5 transition-all duration-1000 ease-out ${
+      className={`py-20 px-4 transition-all duration-1000 ease-out ${
         isVisible 
           ? 'opacity-100 translate-y-0' 
           : 'opacity-0 translate-y-10'

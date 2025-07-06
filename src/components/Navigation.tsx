@@ -1,6 +1,4 @@
-
-import { useState } from 'react';
-import { Code } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 interface NavigationProps {
   activeSection: string;
@@ -8,6 +6,8 @@ interface NavigationProps {
 
 const Navigation = ({ activeSection }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(true);
 
   const navItems = [
     { id: 'hero', label: 'Home' },
@@ -26,8 +26,38 @@ const Navigation = ({ activeSection }: NavigationProps) => {
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    // Set whether current screen is desktop
+    const checkIsDesktop = () => setIsDesktop(window.innerWidth >= 768);
+    checkIsDesktop(); // Initial check
+    window.addEventListener('resize', checkIsDesktop);
+    
+    const handleScroll = () => {
+      if (window.scrollY > 50 && isDesktop) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('resize', checkIsDesktop);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isDesktop]);
+
+  const backgroundClass = isDesktop
+    ? scrolled
+      ? 'bg-black/80 backdrop-blur-lg border-b border-white/10'
+      : 'bg-transparent'
+    : 'bg-black/80 backdrop-blur-lg border-b border-white/10';
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-lg border-b border-white/10">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ${backgroundClass}`}
+    >
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -50,23 +80,28 @@ const Navigation = ({ activeSection }: NavigationProps) => {
 
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 ${
-                  activeSection === item.id
-                    ? 'text-white'
-                    : 'text-gray-400 hover:text-white'
-                }`}
-              >
-                {item.label}
-                {activeSection === item.id && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white rounded-full" />
-                )}
-              </button>
-            ))}
+          <div className="hidden md:flex items-center space-x-8 ">
+{navItems.map((item) => {
+  const isActive = activeSection === item.id;
+  const isContact = item.id === 'contact';
+
+  return (
+    <button
+      key={item.id}
+      onClick={() => scrollToSection(item.id)}
+      className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 
+        ${isActive ? 'text-white' : 'text-gray-400 hover:text-white'} 
+        ${isContact ? 'border border-white hover:bg-white/10' : ''}
+      `}
+    >
+      {item.label}
+      {isActive && !isContact && (
+        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white rounded-full" />
+      )}
+    </button>
+  );
+})}
+
           </div>
 
           {/* Mobile Menu Button */}

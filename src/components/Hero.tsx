@@ -159,40 +159,41 @@ const titles = [
               <div className="flex flex-col items-end gap-3">
                 <button 
                   onClick={scrollToExperience}
-                  className="px-6 py-2 bg-white md:w-[350px] text-black rounded-lg font-medium hover:bg-gray-200 transition-all duration-300 hover:scale-105 text-sm"
+                  className="px-6 py-2 bg-white md:w-[350px] rounded-lg border border-black text-black font-medium hover:bg-gray-200 transition-all duration-300 hover:scale-105 text-sm"
                 >
                   View My Work
                 </button>
                 <a
                   href="/Villanueva, John Ashley D. CV2Resume.pdf"
                   download
-                  className="px-6 py-2 border md:w-[350px] border-white text-white rounded-lg font-medium hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 text-center text-sm"
+                  className="px-6 py-2 border md:w-[350px] rounded-lg border-white text-white font-medium hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 text-center text-sm"
                 >
                   Download CV
                 </a>
               </div>
               
-<div className="flex items-center justify-end gap-4 mt-6 mr-2">
-
+<div className="flex items-center justify-end gap-4 mt-6">
   <a
     href="https://github.com/Ashlipogi"
     target="_blank"
     rel="noopener noreferrer"
-    className="text-white/60 hover:text-white transition-colors"
+    className="p-2 border border-white rounded-md text-white/60 hover:text-white hover:bg-white/10 transition-all duration-300"
     aria-label="GitHub"
   >
-    <Github className="w-5 h-5" />
+    <Github className="w-6 h-6" />
   </a>
+
   <a
-    href="www.linkedin.com/in/john-ashley-villanueva-29b607265"
+    href="https://www.linkedin.com/in/john-ashley-villanueva-29b607265"
     target="_blank"
     rel="noopener noreferrer"
-    className="text-white/60 hover:text-white transition-colors"
+    className="p-2 border border-white rounded-md text-white/60 hover:text-white hover:bg-white/10 transition-all duration-300"
     aria-label="LinkedIn"
   >
-    <Linkedin className="w-5 h-5" />
+    <Linkedin className="w-6 h-6" />
   </a>
 </div>
+
             </div>
           </div>
         </div>
@@ -266,34 +267,35 @@ const titles = [
             </a>
           </div>
           
-<div className="flex items-center justify-end gap-4 mt-6 mr-2">
-
+<div className="flex items-center justify-end gap-4 mt-6">
   <a
     href="https://github.com/Ashlipogi"
     target="_blank"
     rel="noopener noreferrer"
-    className="text-white/60 hover:text-white transition-colors"
+    className="p-2 border border-white rounded-md text-white/60 hover:text-white hover:bg-white/10 transition-all duration-300"
     aria-label="GitHub"
   >
-    <Github className="w-5 h-5" />
+    <Github className="w-6 h-6" />
   </a>
+
   <a
-    href="www.linkedin.com/in/john-ashley-villanueva-29b607265"
+    href="https://www.linkedin.com/in/john-ashley-villanueva-29b607265"
     target="_blank"
     rel="noopener noreferrer"
-    className="text-white/60 hover:text-white transition-colors"
+    className="p-2 border border-white rounded-md text-white/60 hover:text-white hover:bg-white/10 transition-all duration-300"
     aria-label="LinkedIn"
   >
-    <Linkedin className="w-5 h-5" />
+    <Linkedin className="w-6 h-6" />
   </a>
 </div>
         </div>
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-50 transform -translate-x-1/2 animate-bounce">
-        <ArrowDown className="w-6 h-6 text-white/60" />
-      </div>
+<div className="absolute -bottom-5 md:bottom-6 animate-bounce z-30">
+  <ArrowDown className="w-6 h-6 text-white/60" />
+</div>
+
     </section>
   );
 };

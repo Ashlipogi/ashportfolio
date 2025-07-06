@@ -41,7 +41,7 @@ useEffect(() => {
   return (
     <div className="relative min-h-screen text-white overflow-x-hidden">
       <AnimatedBackground />
-      <CustomCursor activeSection={activeSection} />
+      {/* <CustomCursor activeSection={activeSection} /> */}
       <div className="relative z-10">
         <Navigation activeSection={activeSection} />
         <Hero />

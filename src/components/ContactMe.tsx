@@ -285,7 +285,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     onChange={handleInputChange}
                     rows={5}
                     className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-white/40 transition-colors resize-vertical"
-                    placeholder="Tell me about your project or just say hello!"
+                    placeholder="Right message here..."
                     required
                     disabled={isSubmitting}
                   />

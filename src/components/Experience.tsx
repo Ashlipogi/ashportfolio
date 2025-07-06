@@ -491,7 +491,7 @@ const Experience = () => {
       {/* Major Projects Section */}
       <section
         id="experience"
-        className="py-20 px-4 bg-white/5 transition-all duration-1000 ease-out"
+        className="py-20 px-4 transition-all duration-1000 ease-out"
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
