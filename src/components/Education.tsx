@@ -105,58 +105,7 @@ const Education = () => {
           ))}
         </div>
 
-        {/* Contact Call-to-Action */}
-        <div className="mt-16 text-center">
-          <div className="p-8 bg-white/10 border border-white/20 rounded-xl">
-            <h3 className="text-2xl font-bold text-white mb-4">Let's Connect!</h3>
-            <p className="text-gray-400 mb-6">
-              Interested in collaborating or learning more about my work? I'd love to hear from you.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=villanuevajohn519@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-all duration-300 hover:scale-105"
-                title="Email"
-              >
-                <FaEnvelope size={20} /> Gmail
-              </a>
-              <a
-                href="tel:09478294412"
-                className="flex items-center gap-2 px-6 py-3 border border-white text-white rounded-lg font-semibold hover:bg-white hover:text-black transition-all duration-300 hover:scale-105"
-                title="Call"
-              >
-                <FaPhone size={20} /> Call
-              </a>
-              <a
-                href="https://www.facebook.com/AZHLEEH"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 border border-white text-white rounded-lg font-semibold hover:bg-white hover:text-black transition-all duration-300 hover:scale-105"
-                title="Facebook"
-              >
-                <FaFacebook size={20} /> Facebook
-              </a>
-              <a
-                href="https://www.instagram.com/ashzyed/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 border border-white text-white rounded-lg font-semibold hover:bg-white hover:text-black transition-all duration-300 hover:scale-105"
-                title="Instagram"
-              >
-                <FaInstagram size={20} /> Instagram
-              </a>
-            </div>
-          </div>
-        </div>
-          <footer className=" py-6 mt-10 -mb-10 flex justify-center">
-            <div className="w-full mx-auto bg-white/10 border border-white/20 rounded-xl text-center text-gray-300 shadow-lg transition-all duration-300 hover:border-white/30">
-              <span className="block py-4 px-6 text-sm md:text-base font-medium">
-                © 2025 John Ashley Villanueva. All Rights Reserved.
-              </span>
-            </div>
-          </footer>
+ 
       </div>
     </section>
   );

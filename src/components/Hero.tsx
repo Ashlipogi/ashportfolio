@@ -1,26 +1,71 @@
 import { useState, useEffect } from 'react';
-import { Code, ArrowDown } from 'lucide-react';
+import { Code, ArrowDown,Github,Linkedin } from 'lucide-react';
 import { useIsMobile } from '../hooks/use-mobile';
 
 const Hero = () => {
+  const [nameText, setNameText] = useState('');
   const [text, setText] = useState('');
-  const fullText = "Full-Stack Developer";
   const [showCursor, setShowCursor] = useState(true);
   const isMobile = useIsMobile();
+useEffect(() => {
+  const names = ["John Ashley Villanueva"];
+  let nameIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
 
-  useEffect(() => {
-    let i = 0;
-    const timer = setInterval(() => {
-      if (i < fullText.length) {
-        setText(fullText.slice(0, i + 1));
-        i++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 100);
+  const typeName = () => {
+    const currentName = names[nameIndex];
+    const updatedText = isDeleting
+      ? currentName.slice(0, charIndex--)
+      : currentName.slice(0, charIndex++);
 
-    return () => clearInterval(timer);
-  }, []);
+    setNameText(updatedText);
+
+    if (!isDeleting && charIndex === currentName.length + 1) {
+      setTimeout(() => isDeleting = true, 1000); // wait before deleting
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      nameIndex = (nameIndex + 1) % names.length;
+    }
+
+    setTimeout(typeName, isDeleting ? 50 : 100);
+  };
+
+  typeName();
+}, []);
+
+useEffect(() => {
+const titles = [
+  "Aspiring Web Developer",
+  "Web Design Learner",
+  "Frontend Enthusiast",
+  "Backend Beginner"
+];
+
+  let titleIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  const type = () => {
+    const currentTitle = titles[titleIndex];
+    const updatedText = isDeleting
+      ? currentTitle.slice(0, charIndex--)
+      : currentTitle.slice(0, charIndex++);
+
+    setText(updatedText);
+
+    if (!isDeleting && charIndex === currentTitle.length + 1) {
+      setTimeout(() => isDeleting = true, 1000); // Wait before deleting
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      titleIndex = (titleIndex + 1) % titles.length;
+    }
+
+    setTimeout(type, isDeleting ? 50 : 100);
+  };
+
+  type();
+}, []);
 
   useEffect(() => {
     const cursorTimer = setInterval(() => {
@@ -45,7 +90,7 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto w-full">
         
         {/* Desktop Layout */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           {/* Left Side Content */}
           <div className="absolute left-4 md:left-12 top-1/2 transform -translate-y-1/2 z-20 max-w-md">
             <div className="text-left space-y-4 animate-fade-in">
@@ -56,10 +101,11 @@ const Hero = () => {
               
               <div>
                 <h3 className="text-lg text-gray-400 mb-2">Hey there! I'm</h3>
-                <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-                  John Ashley<br />
-                  Villanueva
-                </h1>
+              <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight min-h-[3.5rem]">
+                <span>{nameText}</span>
+                <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity`}>|</span>
+              </h1>
+
               </div>
               
               <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
@@ -126,17 +172,33 @@ const Hero = () => {
                 </a>
               </div>
               
-              {/* Tech stack indicators */}
-              <div className="flex flex-wrap gap-2 justify-end mt-6">
-                <Code className="w-5 h-5 text-white/60" />
-                <span className="text-xs text-gray-500">React • Node.js • TypeScript</span>
-              </div>
+<div className="flex items-center justify-end gap-4 mt-6 mr-2">
+
+  <a
+    href="https://github.com/Ashlipogi"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-white/60 hover:text-white transition-colors"
+    aria-label="GitHub"
+  >
+    <Github className="w-5 h-5" />
+  </a>
+  <a
+    href="www.linkedin.com/in/john-ashley-villanueva-29b607265"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-white/60 hover:text-white transition-colors"
+    aria-label="LinkedIn"
+  >
+    <Linkedin className="w-5 h-5" />
+  </a>
+</div>
             </div>
           </div>
         </div>
 
         {/* Mobile Layout */}
-        <div className="md:hidden flex flex-col items-center text-center space-y-6 animate-fade-in">
+        <div className="lg:hidden flex flex-col items-center text-center space-y-6 animate-fade-in">
           {/* Status Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs">
             <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
@@ -169,9 +231,11 @@ const Hero = () => {
           <div className="space-y-3">
             <div>
               <h3 className="text-sm text-gray-400 mb-1">Hey there! I'm</h3>
-              <h1 className="text-2xl font-bold text-white leading-tight">
-                John Ashley Villanueva
-              </h1>
+            <h1 className="text-2xl font-bold text-white leading-tight min-h-[2.5rem]">
+              <span>{nameText}</span>
+              <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity`}>|</span>
+            </h1>
+
             </div>
             
             {/* Animated Title */}
@@ -202,11 +266,27 @@ const Hero = () => {
             </a>
           </div>
           
-          {/* Tech Stack */}
-          <div className="flex items-center gap-2 mt-4">
-            <Code className="w-4 h-4 text-white/60" />
-            <span className="text-xs text-gray-500">React • Node.js • TypeScript</span>
-          </div>
+<div className="flex items-center justify-end gap-4 mt-6 mr-2">
+
+  <a
+    href="https://github.com/Ashlipogi"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-white/60 hover:text-white transition-colors"
+    aria-label="GitHub"
+  >
+    <Github className="w-5 h-5" />
+  </a>
+  <a
+    href="www.linkedin.com/in/john-ashley-villanueva-29b607265"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-white/60 hover:text-white transition-colors"
+    aria-label="LinkedIn"
+  >
+    <Linkedin className="w-5 h-5" />
+  </a>
+</div>
         </div>
       </div>
 

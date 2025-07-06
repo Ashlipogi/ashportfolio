@@ -15,6 +15,7 @@ const Navigation = ({ activeSection }: NavigationProps) => {
     { id: 'skills', label: 'Skills' },
     { id: 'experience', label: 'Experience' },
     { id: 'education', label: 'Education' },
+    { id: 'contact', label: 'Contact' },
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -34,7 +35,7 @@ const Navigation = ({ activeSection }: NavigationProps) => {
   className="flex items-center space-x-2 cursor-pointer"
   onClick={() => scrollToSection('hero')}
 >
-  <div className="p-1 bg-white/10 border bg-white/80 border-black/50 rounded-lg">
+  <div className="p-1 bg-white/10 border bg-white/100 border-black/50 rounded-lg">
     <img
       src="imgs/Logo Ash.png"
       alt="AshDev Logo"

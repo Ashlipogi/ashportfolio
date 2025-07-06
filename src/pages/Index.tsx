@@ -7,13 +7,14 @@ import Skills from '../components/Skills';
 import Experience from '../components/Experience';
 import Projects from '../components/Projects';
 import Education from '../components/Education';
-
+import CustomCursor from '@/components/CustomCursor';
+import ContactMe from '../components/ContactMe';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('hero');
 
 useEffect(() => {
-  const sections = ['hero', 'about', 'skills', 'experience', 'projects', 'education'];
+  const sections = ['hero', 'about', 'skills', 'experience', 'projects', 'education', 'contact'];
   const sectionElements = sections
     .map((id) => document.getElementById(id))
     .filter(Boolean) as HTMLElement[];
@@ -40,6 +41,7 @@ useEffect(() => {
   return (
     <div className="relative min-h-screen text-white overflow-x-hidden">
       <AnimatedBackground />
+      <CustomCursor activeSection={activeSection} />
       <div className="relative z-10">
         <Navigation activeSection={activeSection} />
         <Hero />
@@ -47,6 +49,7 @@ useEffect(() => {
         <Skills />
         <Experience />
         <Education />
+        <ContactMe />
       </div>
     </div>
   );
