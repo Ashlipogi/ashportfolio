@@ -1,5 +1,6 @@
+
+import { useState, useEffect, useRef } from 'react';
 import { Code, Database, Globe } from 'lucide-react';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { FaHtml5 } from "react-icons/fa";
 import { IoLogoCss3 } from "react-icons/io";
 import { DiJavascript } from "react-icons/di";
@@ -17,15 +18,31 @@ import { GrSystem } from "react-icons/gr";
 import { FaTools } from "react-icons/fa";
 
 const Skills = () => {
-  const [ref, isVisible] = useScrollAnimation();
+  const skillsRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
+
+    if (skillsRef.current) {
+      observer.observe(skillsRef.current);
+    }
+
+    return () => {
+      if (skillsRef.current) observer.unobserve(skillsRef.current);
+    };
+  }, []);
   
   const skillCategories = [
     {
       title: 'Programming Languages',
       skills: [
-        { name: 'HTML', level: 90, icon: FaHtml5  },
-        { name: 'CSS', level: 90, icon: IoLogoCss3  },
-        { name: 'JavaScript', level: 85, icon: DiJavascript  },
+        { name: 'HTML', level: 80, icon: FaHtml5  },
+        { name: 'CSS', level: 80, icon: IoLogoCss3  },
+        { name: 'JavaScript', level: 75, icon: DiJavascript  },
         { name: 'PHP', level: 80, icon: FaPhp  },
         { name: 'Python', level: 45, icon: FaPython  },
       ]
@@ -44,7 +61,7 @@ const Skills = () => {
       title: 'Additional Skills',
       skills: [
         { name: 'Prompt Engineering', level: 90, icon:TbPrompt  },
-        { name: 'Database Management', level: 85, icon:FaDatabase  },
+        { name: 'Database Management', level: 70, icon:FaDatabase  },
         { name: 'Web Development', level: 90, icon:MdWeb  },
         { name: 'System Administration', level: 50, icon:GrSystem  },
         { name: 'Technical Support', level: 50, icon:FaTools  },
@@ -113,11 +130,9 @@ const Skills = () => {
   return (
     <section 
       id="skills" 
-      ref={ref}
-      className={`py-20 px-4 transition-all duration-1000 ease-out ${
-        isVisible 
-          ? 'opacity-100 translate-y-0' 
-          : 'opacity-0 translate-y-10'
+      ref={skillsRef}
+      className={`py-20 px-4 transition-opacity duration-700 ${
+        visible ? 'animate-fade-in' : 'animate-fade-out'
       }`}
     >
       <div className="max-w-6xl mx-auto">

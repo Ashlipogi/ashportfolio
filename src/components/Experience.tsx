@@ -1,15 +1,52 @@
-import { useState } from 'react';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
+
+import { useState,useRef,useEffect } from 'react';
 import { X, ArrowLeft, ArrowRight } from 'lucide-react';
+import { useIsMobile } from '../hooks/use-mobile';
 
 const Experience = () => {
-  const [ref, isVisible] = useScrollAnimation();
   const [showProjectModal, setShowProjectModal] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [modalType, setModalType] = useState<'work' | 'major' | null>(null);
+  const experienceRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+  const majorRef = useRef(null);
+  const [majorVisible, setMajorVisible] = useState(false);
+  const isMobile = useIsMobile();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: isMobile ? 0.1 : 0.3 }
+    );
+
+    if (experienceRef.current) {
+      observer.observe(experienceRef.current);
+    }
+
+    return () => {
+      if (experienceRef.current) observer.unobserve(experienceRef.current);
+    };
+  }, [isMobile]);
+
+// this is for Major effects
+  useEffect(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => setMajorVisible(entry.isIntersecting),
+    { threshold: isMobile ? 0.1 : 0.3 }
+  );
+
+  if (majorRef.current) {
+    observer.observe(majorRef.current);
+  }
+
+  return () => {
+    if (majorRef.current) observer.unobserve(majorRef.current);
+  };
+}, [isMobile]);
 
   // --- Work Experience Data ---
+  // ... keep existing code (experiences array, majorProjects array, projects object, allMajorProjectImages array)
   const experiences = [
     {
       title: 'Photocopy Shop Assistant',
@@ -379,6 +416,7 @@ const Experience = () => {
   ];
 
   // --- Modal Image Logic ---
+  // ... keep existing code (getAllImages, nextImage, prevImage, openProjectModal, closeProjectModal functions)
   const getAllImages = () => {
     if (modalType === 'work') {
       return projects[selectedProject].images.flatMap(category =>
@@ -421,52 +459,50 @@ const Experience = () => {
   return (
     <>
       {/* Work Experience Section */}
-      <section
-        id="experience"
-        ref={ref}
-        className={`py-20 px-4 transition-all duration-1000 ease-out ${
-          isVisible
-            ? 'opacity-100 translate-y-0'
-            : 'opacity-0 translate-y-10'
-        }`}
-      >
+    <section 
+      id="experience" 
+      ref={experienceRef}
+      className={`py-12 md:py-20 px-4 transition-all duration-700 ease-in-out ${
+        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+    >
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
               Work Experience
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-transparent via-white to-transparent rounded-full mx-auto animate-scale-in" />
-            <p className="text-gray-400 max-w-2xl mt-4 mx-auto">
+            <p className="text-gray-400 max-w-2xl mt-4 mx-auto text-sm md:text-base">
               My professional journey and the impact I've made in various roles
             </p>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8">
             {experiences.map((exp, index) => (
               <div
                 key={index}
-                className="group relative p-8 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-all duration-300 hover:scale-105"
+                className="group relative p-6 md:p-8 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-all duration-300 hover:scale-105"
               >
                 <div className="absolute inset-0 bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
                 <div className="relative z-10">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-1">{exp.title}</h3>
-                      <p className="text-gray-300 font-medium">{exp.company}</p>
+                      <h3 className="text-lg md:text-xl font-bold text-white mb-1">{exp.title}</h3>
+                      <p className="text-gray-300 font-medium text-sm md:text-base">{exp.company}</p>
                     </div>
                     <div className="mt-2 md:mt-0">
-                      <span className="inline-block px-3 py-1 bg-white/10 border border-white/20 rounded-full text-sm text-white">
+                      <span className="inline-block px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs md:text-sm text-white">
                         {exp.period}
                       </span>
                     </div>
                   </div>
                   
-                  <p className="text-gray-300 mb-4 leading-relaxed">{exp.description}</p>
+                  <p className="text-gray-300 mb-4 leading-relaxed text-sm md:text-base">{exp.description}</p>
                   
                   <ul className="space-y-2 mb-6">
                     {exp.achievements.map((achievement, achievementIndex) => (
-                      <li key={achievementIndex} className="flex items-start gap-3 text-gray-400">
+                      <li key={achievementIndex} className="flex items-start gap-3 text-gray-400 text-sm md:text-base">
                         <div className="w-1.5 h-1.5 bg-white rounded-full mt-2 flex-shrink-0" />
                         <span>{achievement}</span>
                       </li>
@@ -476,7 +512,7 @@ const Experience = () => {
                   {exp.hasProject && (
                     <button
                       onClick={() => openProjectModal(exp.projectKey, 'work')}
-                      className="px-6 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-all duration-300 hover:scale-105"
+                      className="px-4 md:px-6 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-all duration-300 hover:scale-105 text-sm md:text-base"
                     >
                       View Project Screenshots
                     </button>
@@ -489,49 +525,52 @@ const Experience = () => {
       </section>
 
       {/* Major Projects Section */}
-      <section
-        id="experience"
-        className="py-20 px-4 transition-all duration-1000 ease-out"
-      >
+<section
+      id="experience" 
+  ref={majorRef}
+  className={`py-12 md:py-20 px-4 transition-all duration-700 ease-in-out ${
+    majorVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+  }`}
+>
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
               Major Projects
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-transparent via-white to-transparent rounded-full mx-auto animate-scale-in" />
-            <p className="text-gray-400 max-w-2xl mt-4 mx-auto">
+            <p className="text-gray-400 max-w-2xl mt-4 mx-auto text-sm md:text-base">
               Comprehensive projects showcasing full-stack development capabilities and system integration
             </p>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8">
             {majorProjects.map((project, index) => (
               <div
                 key={index}
-                className="group relative p-8 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-all duration-300 hover:scale-105"
+                className="group relative p-6 md:p-8 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-all duration-300 hover:scale-105"
               >
                 <div className="absolute inset-0 bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 <div className="relative z-10">
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 md:mb-6">
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                      <p className="text-gray-300 font-medium text-lg">{project.subtitle}</p>
+                      <h3 className="text-lg md:text-xl font-bold text-white mb-2">{project.title}</h3>
+                      <p className="text-gray-300 font-medium text-base md:text-lg">{project.subtitle}</p>
                     </div>
                     <div className="mt-4 md:mt-0">
-                      <span className="inline-block px-3 py-1 bg-white/10 border border-white/20 rounded-full text-sm text-gray-300">
+                      <span className="inline-block px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs md:text-sm text-gray-300">
                         {project.period}
                       </span>
                     </div>
                   </div>
 
-                  <p className="text-gray-300 mb-6 leading-relaxed">{project.description}</p>
+                  <p className="text-gray-300 mb-4 md:mb-6 leading-relaxed text-sm md:text-base">{project.description}</p>
 
-                  <div className="mb-6">
-                    <h4 className="text-white font-medium mb-3">Key Features & Achievements:</h4>
+                  <div className="mb-4 md:mb-6">
+                    <h4 className="text-white font-medium mb-3 text-sm md:text-base">Key Features & Achievements:</h4>
                     <ul className="space-y-2">
                       {project.achievements.map((achievement, achievementIndex) => (
-                        <li key={achievementIndex} className="flex items-start gap-3 text-gray-400">
+                        <li key={achievementIndex} className="flex items-start gap-3 text-gray-400 text-sm md:text-base">
                           <div className="w-1.5 h-1.5 bg-white rounded-full mt-2 flex-shrink-0" />
                           <span>{achievement}</span>
                         </li>
@@ -539,13 +578,13 @@ const Experience = () => {
                     </ul>
                   </div>
 
-                  <div className="mb-6">
-                    <h4 className="text-white font-medium mb-3">Technologies Used:</h4>
+                  <div className="mb-4 md:mb-6">
+                    <h4 className="text-white font-medium mb-3 text-sm md:text-base">Technologies Used:</h4>
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech, techIndex) => (
                         <span
                           key={techIndex}
-                          className="px-3 py-1 bg-white/10 border border-white/20 rounded-full text-sm text-gray-300"
+                          className="px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs md:text-sm text-gray-300"
                         >
                           {tech}
                         </span>
@@ -556,7 +595,7 @@ const Experience = () => {
                   {project.hasProject && (
                     <button
                       onClick={() => openProjectModal(project.projectId, 'major')}
-                      className="px-6 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-all duration-300 hover:scale-105"
+                      className="px-4 md:px-6 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-all duration-300 hover:scale-105 text-sm md:text-base"
                     >
                       View Project Screenshots
                     </button>
@@ -569,6 +608,7 @@ const Experience = () => {
       </section>
 
       {/* Unified Project Modal */}
+      {/* ... keep existing code (project modal JSX) */}
       {showProjectModal && selectedProject !== null && (
         <div
           className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-2"

@@ -1,9 +1,23 @@
-
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { FaFacebook, FaInstagram, FaPhone, FaEnvelope } from 'react-icons/fa';
+import { useState, useEffect, useRef } from 'react';
 
 const Education = () => {
-  const [ref, isVisible] = useScrollAnimation();
+const educationRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
+
+    if (educationRef.current) {
+      observer.observe(educationRef.current);
+    }
+
+    return () => {
+      if (educationRef.current) observer.unobserve(educationRef.current);
+    };
+  }, []);
   const educationData = [
     {
       degree: 'Bachelor of Science in Information Technology',
@@ -44,11 +58,9 @@ const Education = () => {
   return (
     <section 
       id="education" 
-      ref={ref}
-      className={`py-20 px-4 transition-all duration-1000 ease-out ${
-        isVisible 
-          ? 'opacity-100 translate-y-0' 
-          : 'opacity-0 translate-y-10'
+      ref={educationRef}
+      className={`py-20 px-4 transition-opacity duration-700 ${
+        visible ? 'animate-fade-in' : 'animate-fade-out'
       }`}
     >
       <div className="max-w-6xl mx-auto">

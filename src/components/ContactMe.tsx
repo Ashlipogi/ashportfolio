@@ -1,10 +1,26 @@
 import { Mail, Phone, Facebook, Instagram, MapPin } from 'lucide-react';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useRef } from 'react';
 import emailjs from '@emailjs/browser';
 
 const ContactMe = () => {
-  const [ref, isVisible] = useScrollAnimation();
+
+  const contactRef = useRef(null);
+    const [visible, setVisible] = useState(false);
+  
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => setVisible(entry.isIntersecting),
+        { threshold: 0.3 }
+      );
+  
+      if (contactRef.current) {
+        observer.observe(contactRef.current);
+      }
+  
+      return () => {
+        if (contactRef.current) observer.unobserve(contactRef.current);
+      };
+    }, []);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -115,13 +131,11 @@ const handleSubmit = async (e: React.FormEvent) => {
   }
 };
   return (
-    <section 
+ <section
       id="contact" 
-      ref={ref}
-      className={`py-20 px-4 transition-all duration-1000 ease-out ${
-        isVisible 
-          ? 'opacity-100 translate-y-0' 
-          : 'opacity-0 translate-y-10'
+      ref={contactRef}
+      className={`py-20 px-4 transition-opacity duration-700 ${
+        visible ? 'animate-fade-in' : 'animate-fade-out'
       }`}
     >
       <div className="max-w-6xl mx-auto">
@@ -267,7 +281,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     value={formData.email}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-white/40 transition-colors"
-                    placeholder="your.email@example.com"
+                    placeholder="Input Valid Email Address"
                     required
                     disabled={isSubmitting}
                   />
@@ -285,7 +299,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     onChange={handleInputChange}
                     rows={5}
                     className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-white/40 transition-colors resize-vertical"
-                    placeholder="Right message here..."
+                    placeholder="Write Your Message Here..."
                     required
                     disabled={isSubmitting}
                   />

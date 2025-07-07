@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Code, ArrowDown,Github,Linkedin } from 'lucide-react';
 import { useIsMobile } from '../hooks/use-mobile';
 
@@ -7,6 +7,8 @@ const Hero = () => {
   const [text, setText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
   const isMobile = useIsMobile();
+    const heroRef = useRef(null);
+   const [visible, setVisible] = useState(false);
 useEffect(() => {
   const names = ["John Ashley Villanueva"];
   let nameIndex = 0;
@@ -66,7 +68,20 @@ const titles = [
 
   type();
 }, []);
+ useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
 
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+
+    return () => {
+      if (heroRef.current) observer.unobserve(heroRef.current);
+    };
+  }, []);
   useEffect(() => {
     const cursorTimer = setInterval(() => {
       setShowCursor(prev => !prev);
@@ -83,17 +98,21 @@ const titles = [
   };
 
   return (
-    <section
-      id="hero"
-      className={`min-h-screen flex items-center justify-center relative px-4 ${isMobile ? 'pt-20 pb-16' : ''}`}
-    >
+<section
+  id="hero"
+  ref={heroRef}
+  className={`min-h-screen flex items-center justify-center relative px-4 transition-opacity duration-700 ${
+    isMobile ? 'pt-20 pb-16' : ''
+  } ${visible ? 'animate-fade-in' : 'animate-fade-out'}`}
+>
       <div className="max-w-7xl mx-auto w-full">
         
         {/* Desktop Layout */}
         <div className="hidden lg:block">
           {/* Left Side Content */}
           <div className="absolute left-4 md:left-12 top-1/2 transform -translate-y-1/2 z-20 max-w-md">
-            <div className="text-left space-y-4 animate-fade-in">
+            <div className={`text-left space-y-4 transition-all duration-700 ${visible ? 'animate-fade-in-left' : 'animate-fade-out-left'}`}>
+
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
                 <span className="text-gray-300">Available for work</span>
@@ -117,7 +136,7 @@ const titles = [
           {/* Center Photo with Shape Background */}
           <div className="flex justify-center items-center relative">
             {/* Large circular background shape */}
-            <div className="absolute w-96 h-96 md:w-[500px] md:h-[500px] rounded-full bg-gradient-to-br from-white/5 to-transparent border border-white/10 animate-pulse"></div>
+            <div className="absolute w-80 h-80 md:w-[450px] md:h-[450px] rounded-full bg-gradient-to-br from-white/5 to-transparent border border-white/10 animate-glow-pulse"></div>
             
             {/* Secondary circular accent */}
             <div className="absolute w-80 h-80 md:w-96 md:h-96 rounded-full border-2 border-white/20 animate-glow-pulse"></div>
@@ -125,11 +144,12 @@ const titles = [
             {/* Photo container */}
             <div className="relative z-10">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl hover:scale-105 transition-transform duration-500">
-                <img 
-                  src="/imgs/144d392c-83e4-4ab9-8bf8-835966cd8bbe.png" 
-                  alt="John Ashley Villanueva - Software Engineer"
-                  className="w-full h-full object-cover object-center"
-                />
+<img 
+  src="/imgs/144d392c-83e4-4ab9-8bf8-835966cd8bbe.png" 
+  alt="John Ashley Villanueva - Software Engineer"
+  className="w-max h-max object-cover object-center -mt-10 ml-2"
+/>
+
               </div>
               
               {/* Floating accent dots */}
@@ -140,7 +160,8 @@ const titles = [
 
           {/* Right Side Content */}
           <div className="absolute right-2 md:right-6 top-1/2 transform -translate-y-1/2 z-20 max-w-md">
-            <div className="text-right space-y-4 animate-fade-in">
+            <div className={`text-right space-y-4 transition-all duration-700 ${visible ? 'animate-fade-in-right' : 'animate-fade-out-right'}`}>
+
               <div className="space-y-2">
                 <div className="text-2xl md:text-4xl text-white font-bold min-h-[2.5rem]">
                   <span>{text}</span>

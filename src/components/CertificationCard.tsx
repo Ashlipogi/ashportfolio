@@ -1,5 +1,5 @@
 
-import { LucideIcon } from 'lucide-react';
+import { useState } from 'react';
 import { ExternalLink } from 'lucide-react';
 
 interface CertificationCardProps {
@@ -7,110 +7,100 @@ interface CertificationCardProps {
   organization: string;
   period: string;
   type: string;
-  duration?: string;
-  icon: LucideIcon;
-  image: string;
+  icon: React.ComponentType<{ className?: string }>;
+  image?: string;
   link?: string;
+  duration?: string;
   index: number;
 }
 
-const CertificationCard = ({ 
-  title, 
-  organization, 
-  period, 
-  type, 
-  duration, 
-  icon: IconComponent, 
-  image, 
+const CertificationCard = ({
+  title,
+  organization,
+  period,
+  type,
+  icon: Icon,
+  image,
   link,
-  index 
+  duration,
+  index,
 }: CertificationCardProps) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
+
   const handleClick = () => {
     if (link) {
       window.open(link, '_blank', 'noopener,noreferrer');
     }
   };
 
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
+  const handleImageError = () => {
+    setImageError(true);
+    setImageLoaded(true);
+  };
+
   return (
     <div
-      className={`group relative bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-2xl overflow-hidden hover:border-white/40 transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl hover:shadow-white/10 cursor-pointer animate-fade-in`}
-      style={{ animationDelay: `${index * 0.2}s` }}
+      className={`group bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-xl p-4 md:p-6 hover:border-white/30 hover:from-white/15 hover:to-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/5 ${
+        link ? 'cursor-pointer' : ''
+      } opacity-0 animate-fade-in`}
+      style={{ animationDelay: `${0.2 + index * 0.1}s`, animationFillMode: 'forwards' }}
       onClick={handleClick}
     >
-      {/* Hover glow effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/10 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      
-      {/* Certificate Image */}
-      <div className="relative aspect-video overflow-hidden">
-        <img 
-          src={image} 
-          alt={`${title} Certificate`}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-        />
-        
-        {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
-        {/* External link icon */}
-        {link && (
-          <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-            <div className="bg-white/20 backdrop-blur-sm rounded-full p-2 border border-white/30">
-              <ExternalLink className="w-4 h-4 text-white" />
-            </div>
+      {/* Responsive layout */}
+      <div className="flex flex-col gap-4">
+        {image && (
+          <div className="w-full h-50 sm:h-90 md:h-50 lg:h-90 rounded-lg overflow-hidden bg-white/5 flex-shrink-0 relative">
+            {!imageLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-6 h-6 border-2 border-white/20 border-t-white/60 rounded-full animate-spin"></div>
+              </div>
+            )}
+            {!imageError ? (
+              <img
+                src={image}
+                alt={title}
+                className={`w-full h-full object-contain object-center transition-opacity duration-300 ${
+                  imageLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+                onLoad={handleImageLoad}
+                onError={handleImageError}
+                style={{ maxWidth: '100%', maxHeight: '100%' }}
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-white/5">
+                <Icon className="w-8 h-8 text-white/40" />
+              </div>
+            )}
           </div>
         )}
-      </div>
-      
-      {/* Certificate Details */}
-      <div className="relative p-6 z-10">
-        <div className="flex items-start gap-4">
-          <div className="relative">
-            <div className="p-3 bg-gradient-to-br from-white/20 to-white/10 rounded-xl group-hover:from-white/30 group-hover:to-white/20 transition-all duration-300 group-hover:scale-110 border border-white/20">
-              <IconComponent className="w-6 h-6 text-white" />
-            </div>
-            {/* Icon glow effect */}
-            <div className="absolute inset-0 bg-white/20 rounded-xl blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
-          </div>
-          
-          <div className="flex-1">
-            <h4 className="text-xl font-bold text-white mb-2 group-hover:text-white transition-colors duration-300 leading-tight">
+
+        <div className="flex-1 min-w-0">
+          <div className="flex items-start justify-between mb-2">
+            <h4 className="text-white font-semibold text-base md:text-lg leading-tight pr-2">
               {title}
             </h4>
-            <p className="text-gray-300 text-sm mb-4 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
-              {organization}
-            </p>
-            
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 text-xs">
-              <span className="px-3 py-1.5 bg-white/10 text-gray-300 rounded-full border border-white/20 group-hover:bg-white/20 group-hover:text-white transition-all duration-300">
-                {type}
-              </span>
-              <span className="px-3 py-1.5 bg-white/10 text-gray-300 rounded-full border border-white/20 group-hover:bg-white/20 group-hover:text-white transition-all duration-300">
-                {period}
-              </span>
-              {duration && (
-                <span className="px-3 py-1.5 bg-white/10 text-gray-300 rounded-full border border-white/20 group-hover:bg-white/20 group-hover:text-white transition-all duration-300">
-                  {duration}
-                </span>
-              )}
-            </div>
+            {link && (
+              <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors flex-shrink-0 mt-0.5" />
+            )}
+          </div>
+          
+          <div className="space-y-1 mb-3">
+            <p className="text-gray-300 text-sm font-medium">{organization}</p>
+            <p className="text-gray-400 text-sm">{period}</p>
+            {duration && (
+              <p className="text-gray-400 text-sm">{duration}</p>
+            )}
+          </div>
+
+          <div className="inline-block px-3 py-1 bg-white/10 rounded-full">
+            <span className="text-xs text-gray-300 font-medium">{type}</span>
           </div>
         </div>
-        
-        {/* Click indicator */}
-        {link && (
-          <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-            <div className="text-xs text-gray-400 flex items-center gap-1">
-              <span>View Certificate</span>
-              <ExternalLink className="w-3 h-3" />
-            </div>
-          </div>
-        )}
-      </div>
-      
-      {/* Animated border */}
-      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" />
       </div>
     </div>
   );
