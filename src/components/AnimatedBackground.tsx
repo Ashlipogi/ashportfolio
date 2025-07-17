@@ -73,7 +73,7 @@ const AnimatedBackground = () => {
         className="absolute inset-0"
         style={{
           background: `
-            linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%),
+            linear-gradient(135deg, #141414ff 0%, #000000ff 50%, #000000ff 100%),
             radial-gradient(circle at 30% 20%, rgba(30, 30, 30, 0.8) 0%, transparent 50%),
             radial-gradient(circle at 70% 80%, rgba(20, 20, 20, 0.6) 0%, transparent 50%)
           `,

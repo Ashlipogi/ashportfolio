@@ -149,7 +149,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid gap-6 md:gap-8 lg:grid-cols-2">
+          <div className="grid gap-6 md:gap-8 lg:grid-cols-3">
             {certifications.map((cert, index) => (
               <CertificationCard
                 key={index}

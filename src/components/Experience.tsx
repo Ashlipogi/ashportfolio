@@ -477,7 +477,7 @@ const Experience = () => {
             </p>
           </div>
 
-          <div className="space-y-6 md:space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {experiences.map((exp, index) => (
               <div
                 key={index}
@@ -543,7 +543,7 @@ const Experience = () => {
             </p>
           </div>
 
-          <div className="space-y-6 md:space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {majorProjects.map((project, index) => (
               <div
                 key={index}
