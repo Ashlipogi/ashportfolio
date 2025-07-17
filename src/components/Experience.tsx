@@ -1,4 +1,3 @@
-
 import { useState,useRef,useEffect } from 'react';
 import { X, ArrowLeft, ArrowRight } from 'lucide-react';
 import { useIsMobile } from '../hooks/use-mobile';
@@ -17,7 +16,7 @@ const Experience = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setVisible(entry.isIntersecting),
-      { threshold: isMobile ? 0.1 : 0.3 }
+      { threshold: 0.1, rootMargin: '50px 0px -50px 0px' }
     );
 
     if (experienceRef.current) {
@@ -33,7 +32,7 @@ const Experience = () => {
   useEffect(() => {
   const observer = new IntersectionObserver(
     ([entry]) => setMajorVisible(entry.isIntersecting),
-    { threshold: isMobile ? 0.1 : 0.3 }
+    { threshold: 0.1, rootMargin: '50px 0px -50px 0px' }
   );
 
   if (majorRef.current) {
@@ -141,7 +140,36 @@ const Experience = () => {
       ],
       hasProject: true,
       projectId: 1
+    },
+    {
+      title: 'Inventory Management System',
+      subtitle: 'Comprehensive Stock Control & Warehouse Management Platform',
+      period: '2024 - 2025',
+      description:
+        'A comprehensive inventory management system designed to streamline stock control and inventory operations. The system provides real-time inventory tracking, detailed analytics, comprehensive item management, and automated stock monitoring with pull-in/pull-out tracking for efficient business operations.',
+      achievements: [
+        'Built comprehensive dashboard with real-time inventory statistics and value tracking',
+        'Implemented detailed item management with category organization and stock monitoring',
+        'Created advanced analytics showing top items by value and low stock alerts',
+        'Developed pull-in/pull-out tracking system with recent transaction history',
+        'Designed intuitive item addition interface with multiple unit types support',
+        'Built comprehensive search and filtering capabilities for inventory management',
+        'Implemented real-time stock level monitoring with automated alerts',
+        'Created detailed item tracking with pricing, categories, and total value calculations'
+      ],
+      technologies: [
+        'React.js',
+        'TypeScript',
+        'Laravel Framework',
+        'MySQL Database',
+        'Tailwind CSS',
+        'PHP',
+        'JavaScript'
+      ],
+      hasProject: true,
+      projectId: 2
     }
+    
   ];
 
   // --- Project Images (Work Experience) ---
@@ -409,6 +437,48 @@ const Experience = () => {
           category: 'TikTok Integration',
           images: [
             { src: '/imgs/reds/Screenshot 2025-06-26 123502.png', title: 'TikTok Product Demo', description: 'Embedded TikTok video player showing product demonstration with Filipino language content and social engagement features' }
+          ]
+        }
+      ]
+    },
+    // Inventory Management System Images
+    {
+      projectId: 2,
+      categories: [
+        {
+          category: 'Authentication',
+          images: [
+            { src: '/imgs/ivent/Screenshot 2025-07-17 141823.png', title: 'Login Portal', description: 'Secure authentication system with AshDev branding, email/password login, remember me functionality, and password recovery options' }
+          ]
+        },
+        {
+          category: 'Dashboard Overview',
+          images: [
+            { src: '/imgs/ivent/Screenshot 2025-07-14 124052.png', title: 'Main Dashboard', description: 'Comprehensive dashboard showing total items (5), total value (₱20786.00), low stock alerts (2), and out of stock items (0) with pull in/out statistics' },
+            { src: '/imgs/ivent/Screenshot 2025-07-14 142946.png', title: 'Updated Dashboard', description: 'Real-time dashboard updates showing inventory changes with pull in/out statistics and monthly tracking' }
+          ]
+        },
+        {
+          category: 'Inventory Analytics',
+          images: [
+            { src: '/imgs/ivent/Screenshot 2025-07-14 144532.png', title: 'Monthly Trends Analysis', description: 'Detailed monthly trends from Feb-Jul 2025 showing in/out statistics and category breakdown with item values and quantities' },
+            { src: '/imgs/ivent/Screenshot 2025-07-14 144544.png', title: 'Top Items & Low Stock', description: 'Dashboard showing top items by value including BOND PAPER (₱19000.00), KOPIKO ORIGINAL (₱1250.00), and low stock alerts for examasd and askda items' },
+            { src: '/imgs/ivent/Screenshot 2025-07-14 144555.png', title: 'Recent Transactions', description: 'Real-time tracking of recent pull-ins and pull-outs with detailed transaction history, quantities, and timestamps' }
+          ]
+        },
+        {
+          category: 'Item Management',
+          images: [
+            { src: '/imgs/ivent/Screenshot 2025-07-14 144615.png', title: 'Items List Management', description: 'Comprehensive item listing with search functionality, showing detailed information including name, description, category, unit, current stock, price, and total value' },
+            { src: '/imgs/ivent/Screenshot 2025-07-14 144627.png', title: 'Recent Item Additions', description: 'Timeline view of recently added items with detailed information including quantities, prices, categories, and total values for each item' },
+            { src: '/imgs/ivent/Screenshot 2025-07-14 144646.png', title: 'Add New Item Form', description: 'Comprehensive item creation interface with fields for name, description, category, stock, price, and multiple unit type options (Pieces, Kilograms, Grams, Liters, etc.)' },
+            { src: '/imgs/ivent/Screenshot 2025-07-14 144701.png', title: 'Item Details View', description: 'Detailed item information display showing comprehensive data including stock levels, pricing, categories, and item specifications' },
+            { src: '/imgs/ivent/Screenshot 2025-07-14 144717.png', title: 'Item Search & Filter', description: 'Advanced search and filtering capabilities for inventory items with multiple filter options and real-time search results' },
+            { src: '/imgs/ivent/Screenshot 2025-07-14 144726.png', title: 'Item Categories Overview', description: 'Category-based item organization showing items grouped by categories with quick access and management options' },
+            { src: '/imgs/ivent/Screenshot 2025-07-14 144738.png', title: 'Item Stock Management', description: 'Stock level management interface showing current inventory levels, stock adjustments, and inventory tracking features' },
+            { src: '/imgs/ivent/Screenshot 2025-07-14 144752.png', title: 'Item Reports & Analytics', description: 'Comprehensive reporting and analytics for inventory items including stock reports, value analysis, and inventory insights' },
+             { src: '/imgs/ivent/Screenshot 2025-07-14 144805.png', title: 'Advanced Item Analytics', description: 'Enhanced analytics dashboard showing detailed item performance metrics, trends, and comprehensive inventory analysis' },
+            { src: '/imgs/ivent/Screenshot 2025-07-14 144816.png', title: 'Item Performance Dashboard', description: 'Performance tracking dashboard displaying item usage statistics, turnover rates, and optimization recommendations' }
           ]
         }
       ]

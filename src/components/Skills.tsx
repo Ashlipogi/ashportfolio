@@ -102,6 +102,11 @@ const Skills = () => {
       name: 'GitHub', 
       image: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
     },
+{
+  name: 'Supabase',
+  image: 'imgs/0_QzPzYLTNRX7p5Rsl.jpg'
+},
+
     { 
       name: 'AnyDesk', 
       image: 'imgs/images__1_-removebg-preview.png'
