@@ -98,16 +98,13 @@ const About = () => {
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start mb-12 md:mb-16">
           <div className="space-y-4 md:space-y-6">
-            <p className="text-base md:text-lg text-gray-300 leading-relaxed">
-              I'm a dynamic professional with a passion for learning and mastering new skills. 
-              With a background in Bachelor of Science in Information Technology, I excel in 
-              quickly grasping complex concepts and applying them to real-world scenarios.
-            </p>
+          
             
-            <p className="text-base md:text-lg text-gray-300 leading-relaxed">
-              I thrive in fast-paced environments and possess strong analytical skills and a 
-              collaborative mindset to tackle challenges and deliver innovative solutions. 
-              My experience spans from web development to database management and system optimization.
+            <p
+  className="text-base md:text-lg text-gray-300 leading-relaxed"
+  style={{ textAlign: 'justify' }}
+>
+              I'm a passionate mobile app and web developer with a Bachelor of Science in Information Technology (BSIT) degree and hands-on experience using React Native (Expo), React with TypeScript, Tailwind CSS, Laravel, PHP, and SQLite. I specialize in building end-to-end solutions — from sleek user interfaces to back-end systems like inventory, costing, and purchase order tools. Whether it's a business automation app or a responsive website, I deliver clean, scalable code and modern UI/UX design. I thrive on challenges and love turning ideas into fully functional, real-world applications.
             </p>
 
             <div className="flex flex-wrap gap-3 md:gap-4">
