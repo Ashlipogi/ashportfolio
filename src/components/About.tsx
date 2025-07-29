@@ -1,6 +1,7 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Award, BookOpen } from 'lucide-react';
-import CircularGallery from './CircularGallery';
+import CertificationCard from './CertificationCard';
 import { useIsMobile } from '../hooks/use-mobile';
 
 const About = () => {
@@ -30,43 +31,63 @@ const About = () => {
     { label: 'Certifications', value: '5+' },
   ];
 
-  // Transform certifications data for CircularGallery
-  const certificationItems = [
+  const certifications = [
     {
+      title: 'HTML Essentials',
+      organization: 'Cisco Networking Academy',
+      period: 'Jul 2025',
+      type: 'Web Development Certification',
+      icon: BookOpen,
       image: '/imgs/cert/HTML Essential Cert.jpg',
-      text: 'HTML Essentials - Cisco Networking Academy (Jul 2025)',
       link: 'https://www.credly.com/badges/69f8b5cb-05a2-42df-964b-90ea81e51e05',
     },
     {
+      title: 'CSS Essentials',
+      organization: 'Cisco Networking Academy',
+      period: 'Jul 2025',
+      type: 'Web Development Certification',
+      icon: BookOpen,
       image: '/imgs/cert/CSS Essentials.jpg',
-      text: 'CSS Essentials - Cisco Networking Academy (Jul 2025)',
       link: 'https://www.credly.com/badges/79672d10-24af-4588-a0a9-e533095071d1',
     },
     {
+      title: 'JavaScript Essentials 1',
+      organization: 'Cisco Networking Academy',
+      period: 'Jul 2025',
+      type: 'Programming Certification',
+      icon: Award,
       image: '/imgs/cert/JavaScript Essential 1 Cert.jpg',
-      text: 'JavaScript Essentials 1 - Cisco Networking Academy (Jul 2025)',
       link: 'https://www.credly.com/badges/aa1dfaea-5b2f-4f19-803a-d3369bbe5660',
     },
     {
+      title: 'JavaScript Essentials 2',
+      organization: 'Cisco Networking Academy',
+      period: 'Jul 2025',
+      type: 'Programming Certification',
+      icon: Award,
       image: '/imgs/cert/JavaScript Essential 2 Cert.jpg',
-      text: 'JavaScript Essentials 2 - Cisco Networking Academy (Jul 2025)',
       link: 'https://www.credly.com/badges/c6689405-2f10-4bb3-aeed-1a2cbf016d66',
     },
     {
+      title: 'Web Development (Full-Stack)',
+      organization: 'Sto. Domingo Associates - AIA Philippines',
+      duration: '600 hours',
+      period: 'Aug - Nov 2025',
+      type: 'On-the-Job Training',
+      icon: BookOpen,
       image: '/imgs/cert/AIA Cert.png',
-      text: 'Web Development (Full-Stack) - Sto. Domingo Associates - AIA Philippines (Aug - Nov 2025)',
-      link: null,
     },
   ];
 
   return (
-    <section 
-      id="about" 
-      ref={aboutRef}
-      className={`min-h-screen pt-32 pb-20 px-4 transition-opacity duration-700 ${
-        visible ? 'animate-fade-in' : 'animate-fade-out'
-      }`}
-    >
+<section 
+  id="about" 
+  ref={aboutRef}
+  className={`min-h-screen pt-32 pb-20 px-4 transition-opacity duration-700 ${
+    visible ? 'animate-fade-in' : 'animate-fade-out'
+  }`}
+>
+
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
@@ -77,15 +98,17 @@ const About = () => {
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start mb-12 md:mb-16">
           <div className="space-y-4 md:space-y-6">
+          
+            
             <p
-              className="text-base md:text-lg text-gray-300 leading-relaxed"
-              style={{ textAlign: 'justify' }}
-            >
+  className="text-base md:text-lg text-gray-300 leading-relaxed"
+  style={{ textAlign: 'justify' }}
+>
               I'm a passionate mobile app and web developer with a Bachelor of Science in Information Technology (BSIT) degree and hands-on experience using React Native (Expo), React with TypeScript, Tailwind CSS, Laravel, PHP, and SQLite. I specialize in building end-to-end solutions — from sleek user interfaces to back-end systems like inventory, costing, and purchase order tools. Whether it's a business automation app or a responsive website, I deliver clean, scalable code and modern UI/UX design. I thrive on challenges and love turning ideas into fully functional, real-world applications.
             </p>
 
             <div className="flex flex-wrap gap-3 md:gap-4">
-              {['Problem Solver', 'Fast Learner', 'Team Player'].map((skill) => (
+              {['Problem Solver', 'Fast Learner', 'Team Player'].map((skill, index) => (
                 <div 
                   key={skill}
                   className="px-3 md:px-4 py-1.5 md:py-2 bg-gradient-to-r from-white/10 to-white/5 border border-white/20 rounded-full hover:from-white/20 hover:to-white/10 hover:border-white/40 transition-all duration-300 hover:scale-105"
@@ -111,7 +134,7 @@ const About = () => {
           </div>
         </div>
 
-        {/* Certifications Section with CircularGallery */}
+        {/* Certifications Section */}
         <div className="mt-16 md:mt-20">
           <div className="text-center mb-8 md:mb-12">
             <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-white">
@@ -123,23 +146,20 @@ const About = () => {
             </p>
           </div>
 
-          {/* CircularGallery Container */}
-<div style={{ height: isMobile ? '500px' : '600px' }} className="w-full">
-  <CircularGallery 
-    items={certificationItems}
-    bend={isMobile ? 1.2 : 3} 
-    textColor="#ffffff"
-    borderRadius={0.05}
-    font="bold 20px Inter, sans-serif"
-    scrollSpeed={isMobile ? 1 : 2}
-    scrollEase={isMobile ? 0.1 : 0.05}
-  />
-</div>
+          <div className="grid gap-6 md:gap-8 lg:grid-cols-3">
+            {certifications.map((cert, index) => (
+              <CertificationCard
+                key={index}
+                {...cert}
+                index={index}
+              />
+            ))}
+          </div>
           
-          {/* Instructions */}
+          {/* Call to action */}
           <div className="text-center mt-8 md:mt-12">
             <p className="text-gray-400 text-xs md:text-sm">
-              Scroll or drag to explore certifications • Click to view credentials
+              Click on certification cards to view official credentials
             </p>
           </div>
         </div>
