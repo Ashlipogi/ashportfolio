@@ -1,7 +1,7 @@
 import { Mail, Phone, Facebook, Instagram, MapPin } from 'lucide-react';
 import { useState, useEffect,useRef } from 'react';
 import emailjs from '@emailjs/browser';
-
+import SpotlightCard from './SpotlightCard';
 const ContactMe = () => {
 
   const contactRef = useRef(null);
@@ -154,7 +154,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left Column - Contact Information */}
           <div className="space-y-8">
-            <div className="group relative p-8 bg-white/5 border border-white/10 rounded-xl transition-all duration-300">
+            <SpotlightCard className="group relative p-8 bg-white/5 border border-white/10 rounded-xl transition-all duration-300">
               <div className="absolute inset-0 bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
               
               <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
@@ -228,12 +228,12 @@ const handleSubmit = async (e: React.FormEvent) => {
                   </a>
                 </div>
               </div>
-            </div>
+            </SpotlightCard>
           </div>
 
           {/* Right Column - Contact Form */}
           <div className="space-y-8">
-            <div className="group relative p-8 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-opacity duration-300">
+            <SpotlightCard className="group relative p-8 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-opacity duration-300">
               <div className="absolute inset-0 bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
               
               <h3 className="text-2xl font-bold text-white mb-6">Send Message</h3>
@@ -314,7 +314,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
-            </div>
+            </SpotlightCard>
           </div>
         </div>
 

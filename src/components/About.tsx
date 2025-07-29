@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Award, BookOpen } from 'lucide-react';
 import CertificationCard from './CertificationCard';
 import { useIsMobile } from '../hooks/use-mobile';
-
+import SpotlightCard from './SpotlightCard';
 const About = () => {
   const aboutRef = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -109,19 +109,19 @@ const About = () => {
 
             <div className="flex flex-wrap gap-3 md:gap-4">
               {['Problem Solver', 'Fast Learner', 'Team Player'].map((skill, index) => (
-                <div 
+                <SpotlightCard 
                   key={skill}
                   className="px-3 md:px-4 py-1.5 md:py-2 bg-gradient-to-r from-white/10 to-white/5 border border-white/20 rounded-full hover:from-white/20 hover:to-white/10 hover:border-white/40 transition-all duration-300 hover:scale-105"
                 >
                   <span className="text-white text-sm md:text-base">{skill}</span>
-                </div>
+                </SpotlightCard>
               ))}
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4 md:gap-6">
             {stats.map((stat, index) => (
-              <div
+              <SpotlightCard
                 key={index}
                 className="text-center p-4 md:p-6 bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-xl hover:border-white/30 hover:from-white/15 hover:to-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-white/5"
               >
@@ -129,7 +129,7 @@ const About = () => {
                   {stat.value}
                 </div>
                 <div className="text-gray-400 text-xs md:text-sm">{stat.label}</div>
-              </div>
+              </SpotlightCard>
             ))}
           </div>
         </div>
@@ -148,11 +148,13 @@ const About = () => {
 
           <div className="grid gap-6 md:gap-8 lg:grid-cols-3">
             {certifications.map((cert, index) => (
+            <SpotlightCard>
               <CertificationCard
                 key={index}
                 {...cert}
                 index={index}
               />
+              </SpotlightCard>
             ))}
           </div>
           

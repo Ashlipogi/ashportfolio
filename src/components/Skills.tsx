@@ -16,7 +16,7 @@ import { FaDatabase } from "react-icons/fa6";
 import { MdWeb } from "react-icons/md";
 import { GrSystem } from "react-icons/gr";
 import { FaTools } from "react-icons/fa";
-
+import SpotlightCard from './SpotlightCard';
 const Skills = () => {
   const skillsRef = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -191,7 +191,7 @@ const Skills = () => {
           <div className="relative overflow-hidden mt-4">
             <div className="flex animate-slide-left-infinite space-x-8 whitespace-nowrap min-w-max">
               {duplicatedToolsData.map((tool, index) => (
-                <div
+                <SpotlightCard
                   key={index}
                   className="flex-shrink-0 flex flex-col items-center justify-center bg-white/10 backdrop-blur-sm rounded-lg p-6 w-32 h-32 hover:bg-white/20 transition-all duration-300 group"
                 >
@@ -209,7 +209,7 @@ const Skills = () => {
                   <span className="text-xs text-gray-300 text-center font-medium">
                     {tool.name}
                   </span>
-                </div>
+                </SpotlightCard>
               ))}
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-
+import SpotlightCard from './SpotlightCard';
 const Education = () => {
 const educationRef = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -76,7 +76,7 @@ const educationRef = useRef(null);
 
         <div className="space-y-8">
           {educationData.map((edu, index) => (
-            <div
+            <SpotlightCard
               key={index}
               className="group relative p-8 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-all duration-300 hover:scale-105"
             >
@@ -113,7 +113,7 @@ const educationRef = useRef(null);
                   </ul>
                 </div>
               </div>
-            </div>
+            </SpotlightCard>
           ))}
         </div>
 

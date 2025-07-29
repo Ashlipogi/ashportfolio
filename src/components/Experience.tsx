@@ -1,7 +1,7 @@
 import { useState,useRef,useEffect } from 'react';
 import { X, ArrowLeft, ArrowRight } from 'lucide-react';
 import { useIsMobile } from '../hooks/use-mobile';
-
+import SpotlightCard from './SpotlightCard';
 const Experience = () => {
   const [showProjectModal, setShowProjectModal] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -539,7 +539,7 @@ const Experience = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {experiences.map((exp, index) => (
-              <div
+              <SpotlightCard
                 key={index}
                 className="group relative p-6 md:p-8 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-all duration-300 hover:scale-105"
               >
@@ -578,7 +578,7 @@ const Experience = () => {
                     </button>
                   )}
                 </div>
-              </div>
+              </SpotlightCard>
             ))}
           </div>
         </div>
@@ -605,7 +605,7 @@ const Experience = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {majorProjects.map((project, index) => (
-              <div
+              <SpotlightCard
                 key={index}
                 className="group relative p-6 md:p-8 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-all duration-300 hover:scale-105"
               >
@@ -661,7 +661,7 @@ const Experience = () => {
                     </button>
                   )}
                 </div>
-              </div>
+              </SpotlightCard>
             ))}
           </div>
         </div>
