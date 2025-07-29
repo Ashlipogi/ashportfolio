@@ -1,6 +1,6 @@
-
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ExternalLink } from 'lucide-react';
+import { useIsMobile } from '../hooks/use-mobile';
 
 interface CertificationCardProps {
   title: string;
@@ -27,6 +27,30 @@ const CertificationCard = ({
 }: CertificationCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => {
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current);
+      }
+    };
+  }, []);
 
   const handleClick = () => {
     if (link) {
@@ -43,15 +67,27 @@ const CertificationCard = ({
     setImageLoaded(true);
   };
 
+  // Determine animation class based on visibility, mobile state, and index
+  const getAnimationClass = () => {
+    if (!isVisible) return 'opacity-0';
+    if (!isMobile) return 'animate-fade-in';
+    
+    return index % 2 === 0 ? 'animate-fade-in-left' : 'animate-fade-in-right';
+  };
+
   return (
     <div
+      ref={cardRef}
       className={`group bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-xl p-4 md:p-6 hover:border-white/30 hover:from-white/15 hover:to-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/5 ${
         link ? 'cursor-pointer' : ''
-      } opacity-0 animate-fade-in`}
-      style={{ animationDelay: `${0.2 + index * 0.1}s`, animationFillMode: 'forwards' }}
+      } ${getAnimationClass()}`}
+      style={{
+        animationFillMode: 'forwards',
+        animationDelay: isMobile ? '0.1s' : `${0.2 + index * 0.1}s`
+      }}
       onClick={handleClick}
     >
-      {/* Responsive layout */}
+      {/* Responsive layout - unchanged from original */}
       <div className="flex flex-col gap-4">
         {image && (
           <div className="w-full h-50 sm:h-90 md:h-50 lg:h-90 rounded-lg overflow-hidden bg-white/5 flex-shrink-0 relative">

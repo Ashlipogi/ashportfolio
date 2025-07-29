@@ -260,3 +260,44 @@ html {
   animation: fade-out-right 0.6s ease-out forwards;
   opacity: 1;
 }
+@media (hover: none) {
+  /* Reduce or disable animations on touch devices */
+  .animate-glow-pulse, .animate-fade-in, .animate-fade-out {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+html {
+  -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
+}
+
+body {
+  overflow-x: hidden;
+  position: relative; /* Helps with fixed/absolute positioning */
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media (max-width: 768px) {
+  .circular-gallery-item {
+    /* Reduce hover effects on mobile */
+    --hover-scale: 1.02;
+  }
+  
+  /* Make touch interactions more responsive */
+  .circular-gallery-container {
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+}
+
+/* Prevent text selection during dragging */
+.circular-gallery-container {
+  user-select: none;
+  -webkit-user-select: none;
+}

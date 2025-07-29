@@ -90,20 +90,26 @@ const titles = [
     return () => clearInterval(cursorTimer);
   }, []);
 
-  const scrollToExperience = () => {
-    const element = document.getElementById('experience');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+const scrollToExperience = () => {
+  const element = document.getElementById('experience');
+  if (element) {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    element.scrollIntoView({ behavior: isIOS ? 'auto' : 'smooth' });
+  }
+};
 
   return (
 <section
+
   id="hero"
   ref={heroRef}
   className={`min-h-screen flex items-center justify-center relative px-4 transition-opacity duration-700 ${
     isMobile ? 'pt-20 pb-16' : ''
-  } ${visible ? 'animate-fade-in' : 'animate-fade-out'}`}
+  } ${visible ? 'opacity-100' : 'opacity-0'}`}
+  style={{
+    transform: 'translate3d(0,0,0)', // Force hardware acceleration
+    backfaceVisibility: 'hidden' // Another performance optimization
+  }}
 >
       <div className="max-w-7xl mx-auto w-full">
         
@@ -236,11 +242,12 @@ const titles = [
             {/* Photo container */}
             <div className="relative z-10">
               <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl">
-                <img 
-                  src="/imgs/144d392c-83e4-4ab9-8bf8-835966cd8bbe.png" 
-                  alt="John Ashley Villanueva - Software Engineer"
-                  className="w-full h-full object-cover object-center"
-                />
+<img 
+  src="/imgs/144d392c-83e4-4ab9-8bf8-835966cd8bbe.png" 
+  alt="John Ashley Villanueva - Software Engineer"
+  className="w-100 h-100 object-contain object-center"
+/>
+
               </div>
               
               {/* Floating accent dots */}

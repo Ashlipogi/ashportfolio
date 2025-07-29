@@ -47,17 +47,7 @@ const Experience = () => {
   // --- Work Experience Data ---
   // ... keep existing code (experiences array, majorProjects array, projects object, allMajorProjectImages array)
   const experiences = [
-    {
-      title: 'Photocopy Shop Assistant',
-      company: 'Local Business',
-      period: '2022 - 2024',
-      description: 'Assisted customers with photocopy, printing, and scanning needs. Ensured high-quality service and customer satisfaction.',
-      achievements: [
-        'Maintained excellent customer service standards',
-        'Managed equipment maintenance and troubleshooting',
-        'Processed high-volume orders efficiently'
-      ]
-    },
+
     {
       title: 'Web Developer',
       company: 'AIA Philippines',
