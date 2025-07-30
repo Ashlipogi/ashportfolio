@@ -537,50 +537,79 @@ const Experience = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {experiences.map((exp, index) => (
-              <SpotlightCard
-                key={index}
-                className="group relative p-6 md:p-8 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-all duration-300 hover:scale-105"
-              >
-                <div className="absolute inset-0 bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
-                <div className="relative z-10">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                    <div>
-                      <h3 className="text-lg md:text-xl font-bold text-white mb-1">{exp.title}</h3>
-                      <p className="text-gray-300 font-medium text-sm md:text-base">{exp.company}</p>
-                    </div>
-                    <div className="mt-2 md:mt-0">
-                      <span className="inline-block px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs md:text-sm text-white">
-                        {exp.period}
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <p className="text-gray-300 mb-4 leading-relaxed text-sm md:text-base">{exp.description}</p>
-                  
-                  <ul className="space-y-2 mb-6">
-                    {exp.achievements.map((achievement, achievementIndex) => (
-                      <li key={achievementIndex} className="flex items-start gap-3 text-gray-400 text-sm md:text-base">
-                        <div className="w-1.5 h-1.5 bg-white rounded-full mt-2 flex-shrink-0" />
-                        <span>{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+  {experiences.map((exp, index) => {
+    // Get the first image of the project for the card
+    const featuredImage = exp.hasProject 
+      ? projects[exp.projectKey].images[0].images[0]
+      : null;
 
-                  {exp.hasProject && (
-                    <button
-                      onClick={() => openProjectModal(exp.projectKey, 'work')}
-                      className="px-4 md:px-6 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-all duration-300 hover:scale-105 text-sm md:text-base"
-                    >
-                      View Project Screenshots
-                    </button>
-                  )}
-                </div>
-              </SpotlightCard>
+    return (
+      <SpotlightCard
+        key={index}
+        className="group relative p-0 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-all duration-300 hover:scale-[1.02]"
+      >
+        {/* Featured Image */}
+        {featuredImage && (
+          <div 
+            className="h-48 w-full overflow-hidden rounded-t-xl cursor-pointer"
+            onClick={() => openProjectModal(exp.projectKey, 'work')}
+          >
+            <img
+              src={featuredImage.src}
+              alt={featuredImage.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+        )}
+
+        <div className="p-6">
+          {/* Title and Company */}
+          <div className="mb-4">
+            <h3 className="text-xl font-bold text-white mb-1">{exp.title}</h3>
+            <p className="text-gray-300 font-medium">{exp.company}</p>
+          </div>
+
+          {/* Summary (shortened description) */}
+          <p className="text-gray-300 mb-4 line-clamp-2">
+            {exp.description.split('.').slice(0, 2).join('.') + '.'}
+          </p>
+
+          {/* Tech Stack */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            {exp.achievements.slice(0, 4).map((tech, i) => (
+              <span 
+                key={i} 
+                className="px-3 py-1 bg-white/10 rounded-full text-xs text-gray-300"
+              >
+                {tech.split(' ').slice(0, 2).join(' ')}
+              </span>
             ))}
           </div>
+
+          {/* Bottom section with period and button */}
+          <div className="flex items-center justify-between pt-2 border-t border-white/10"></div>
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-gray-400">
+              {exp.period}
+            </span>
+            {exp.hasProject && (
+              <button
+                onClick={() => openProjectModal(exp.projectKey, 'work')}
+                 className="px-4 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-all text-sm flex items-center gap-1"
+              >
+                  <span>Explore</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            )}
+          </div>
+        </div>
+      </SpotlightCard>
+    );
+  })}
+</div>
         </div>
       </section>
 
@@ -603,67 +632,98 @@ const Experience = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {majorProjects.map((project, index) => (
-              <SpotlightCard
-                key={index}
-                className="group relative p-6 md:p-8 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-all duration-300 hover:scale-105"
-              >
-                <div className="absolute inset-0 bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+  {majorProjects.map((project, index) => {
+    // Get the first image of the project for the card
+    const projectImages = allMajorProjectImages.find(p => p.projectId === project.projectId);
+    const featuredImage = project.hasProject && projectImages?.categories[0]?.images[0];
 
-                <div className="relative z-10">
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 md:mb-6">
-                    <div className="flex-1">
-                      <h3 className="text-lg md:text-xl font-bold text-white mb-2">{project.title}</h3>
-                      <p className="text-gray-300 font-medium text-base md:text-lg">{project.subtitle}</p>
-                    </div>
-                    <div className="mt-4 md:mt-0">
-                      <span className="inline-block px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs md:text-sm text-gray-300">
-                        {project.period}
-                      </span>
-                    </div>
-                  </div>
-
-                  <p className="text-gray-300 mb-4 md:mb-6 leading-relaxed text-sm md:text-base">{project.description}</p>
-
-                  <div className="mb-4 md:mb-6">
-                    <h4 className="text-white font-medium mb-3 text-sm md:text-base">Key Features & Achievements:</h4>
-                    <ul className="space-y-2">
-                      {project.achievements.map((achievement, achievementIndex) => (
-                        <li key={achievementIndex} className="flex items-start gap-3 text-gray-400 text-sm md:text-base">
-                          <div className="w-1.5 h-1.5 bg-white rounded-full mt-2 flex-shrink-0" />
-                          <span>{achievement}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="mb-4 md:mb-6">
-                    <h4 className="text-white font-medium mb-3 text-sm md:text-base">Technologies Used:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs md:text-sm text-gray-300"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {project.hasProject && (
-                    <button
-                      onClick={() => openProjectModal(project.projectId, 'major')}
-                      className="px-4 md:px-6 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-all duration-300 hover:scale-105 text-sm md:text-base"
-                    >
-                      View Project Screenshots
-                    </button>
-                  )}
-                </div>
-              </SpotlightCard>
-            ))}
+    return (
+      <SpotlightCard
+        key={index}
+        className="group relative p-0 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-all duration-300 hover:scale-[1.02]"
+      >
+        {/* Featured Image - Larger than work experience cards */}
+        {featuredImage && (
+          <div 
+            className="h-56 w-full overflow-hidden rounded-t-xl cursor-pointer relative"
+            onClick={() => openProjectModal(project.projectId, 'major')}
+          >
+            <img
+              src={featuredImage.src}
+              alt={featuredImage.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+              <span className="text-white font-medium">{featuredImage.title}</span>
+            </div>
           </div>
+        )}
+
+        <div className="p-6">
+          {/* Title and Subtitle */}
+          <div className="mb-4">
+            <h3 className="text-xl font-bold text-white mb-1">{project.title}</h3>
+            <p className="text-gray-300 font-medium text-sm">{project.subtitle}</p>
+          </div>
+
+          {/* Summary (shortened description) */}
+          <p className="text-gray-300 mb-4 line-clamp-3 text-sm">
+            {project.description}
+          </p>
+
+          {/* Key Features (limited to 3) */}
+          <div className="mb-4">
+            <h4 className="text-white font-medium mb-2 text-sm">Highlights:</h4>
+            <ul className="space-y-1">
+              {project.achievements.slice(0, 3).map((achievement, i) => (
+                <li key={i} className="flex items-start gap-2 text-gray-400 text-xs">
+                  <div className="w-1.5 h-1.5 bg-white rounded-full mt-1.5 flex-shrink-0" />
+                  <span>{achievement.length > 80 ? `${achievement.substring(0, 80)}...` : achievement}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Tech Stack */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            {project.technologies.slice(0, 5).map((tech, i) => (
+              <span 
+                key={i} 
+                className="px-2.5 py-1 bg-white/10 rounded-full text-xs text-gray-300"
+              >
+                {tech}
+              </span>
+            ))}
+            {project.technologies.length > 5 && (
+              <span className="px-2.5 py-1 bg-white/10 rounded-full text-xs text-gray-300">
+                +{project.technologies.length - 5}
+              </span>
+            )}
+          </div>
+
+          {/* Bottom section with period and button */}
+          <div className="flex items-center justify-between pt-2 border-t border-white/10">
+            <span className="text-xs text-gray-400">
+              {project.period}
+            </span>
+            {project.hasProject && (
+              <button
+                onClick={() => openProjectModal(project.projectId, 'major')}
+                className="px-4 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-all text-sm flex items-center gap-1"
+              >
+                <span>Explore</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            )}
+          </div>
+        </div>
+      </SpotlightCard>
+    );
+  })}
+</div>
         </div>
       </section>
 

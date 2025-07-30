@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Code, ArrowDown,Github,Linkedin } from 'lucide-react';
 import { useIsMobile } from '../hooks/use-mobile';
-
+import Aurora from './Aura';
 const Hero = () => {
   const [nameText, setNameText] = useState('');
   const [text, setText] = useState('');
@@ -111,7 +111,17 @@ const scrollToExperience = () => {
     backfaceVisibility: 'hidden' // Another performance optimization
   }}
 >
-      <div className="max-w-7xl mx-auto w-full">
+<div className="absolute inset-0 w-full h-full z-0">
+  <Aurora
+    colorStops={["#000000", "#888888", "#333333"]}
+    blend={0.3}  // Reduced blend for more subtle transitions
+    amplitude={0.8}  // Reduced amplitude for less intense effect
+    speed={0.3}
+  />
+</div>
+
+        <div className="absolute inset-0 w-full h-full bg-black/30 z-10"></div>
+      <div className="max-w-7xl mx-auto w-full relative z-20">
         
         {/* Desktop Layout */}
         <div className="hidden lg:block">
@@ -140,30 +150,29 @@ const scrollToExperience = () => {
           </div>
 
           {/* Center Photo with Shape Background */}
-          <div className="flex justify-center items-center relative">
-            {/* Large circular background shape */}
-            <div className="absolute w-80 h-80 md:w-[450px] md:h-[450px] rounded-full bg-gradient-to-br from-white/5 to-transparent border border-white/10 animate-glow-pulse"></div>
-            
-            {/* Secondary circular accent */}
-            <div className="absolute w-80 h-80 md:w-96 md:h-96 rounded-full border-2 border-white/20 animate-glow-pulse"></div>
-            
-            {/* Photo container */}
-            <div className="relative z-10">
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl hover:scale-105 transition-transform duration-500">
-<img 
-  src="/imgs/144d392c-83e4-4ab9-8bf8-835966cd8bbe.png" 
-  alt="John Ashley Villanueva - Software Engineer"
-  className="w-max h-max object-cover object-center -mt-10 ml-2"
-/>
+<div className="flex justify-center items-center relative">
+  {/* Large circular background shape */}
+  <div className="absolute w-80 h-80 md:w-[450px] md:h-[450px] rounded-full bg-gradient-to-br from-white/5 to-transparent border border-white/10 animate-glow-pulse"></div>
+  
+  {/* Secondary circular accent */}
+  <div className="absolute w-80 h-80 md:w-96 md:h-96 rounded-full border-2 border-white/20 animate-glow-pulse"></div>
+  
+  {/* Photo container - Now with a cropped bottom */}
+  <div className="relative z-10">
+    <div className="overflow-hidden rounded-b-full mb-[100px]">
+      <img 
+        src="/imgs/black2.png" 
+        alt="John Ashley Villanueva - Software Engineer"
+        className="w-[425px] h-[560px] object-cover object-[center_top] ml-2" 
 
-              </div>
-              
-              {/* Floating accent dots */}
-              <div className="absolute -top-4 -right-4 w-3 h-3 bg-white rounded-full animate-pulse shadow-lg shadow-white/50"></div>
-              <div className="absolute -bottom-6 -left-6 w-2 h-2 bg-white/70 rounded-full animate-pulse delay-700"></div>
-            </div>
-          </div>
-
+      />
+    </div>
+    
+    {/* Floating accent dots */}
+    <div className="absolute -top-4 -right-4 w-3 h-3 bg-white rounded-full animate-pulse shadow-lg shadow-white/50"></div>
+    <div className="absolute -bottom-6 -left-6 w-2 h-2 bg-white/70 rounded-full animate-pulse delay-700"></div>
+  </div>
+</div>
           {/* Right Side Content */}
           <div className="absolute right-2 md:right-6 top-1/2 transform -translate-y-1/2 z-20 max-w-md">
             <div className={`text-right space-y-4 transition-all duration-700 ${visible ? 'animate-fade-in-right' : 'animate-fade-out-right'}`}>
@@ -228,27 +237,29 @@ const scrollToExperience = () => {
         {/* Mobile Layout */}
         <div className="lg:hidden flex flex-col items-center text-center space-y-6 animate-fade-in">
           {/* Status Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs">
+          <div className="inline-flex -mb-10 items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs">
             <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
             <span className="text-gray-300">Available for work</span>
           </div>
           
           {/* Photo with Background Effects */}
-          <div className="relative flex justify-center items-center mb-6">
+          <div className="relative flex justify-center items-center">
             {/* Background circles */}
-            <div className="absolute w-64 h-64 rounded-full bg-gradient-to-br from-white/5 to-transparent border border-white/10 animate-pulse"></div>
-            <div className="absolute w-56 h-56 rounded-full border-2 border-white/20 animate-glow-pulse"></div>
+            <div className="absolute w-64 h-64 rounded-full bg-gradient-to-br from-white/5 to-transparent border border-white/10 animate-pulse mt-10"></div>
+            <div className="absolute w-56 h-56 rounded-full border-2 border-white/20 animate-glow-pulse mt-10"></div>
             
             {/* Photo container */}
-            <div className="relative z-10">
-              <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl">
-<img 
-  src="/imgs/144d392c-83e4-4ab9-8bf8-835966cd8bbe.png" 
-  alt="John Ashley Villanueva - Software Engineer"
-  className="w-100 h-100 object-contain object-center"
-/>
+  <div className="relative z-10 -mb-20">
+    <div className="overflow-hidden rounded-b-full mb-[110px]">
+      <img 
+        src="/imgs/black2.png" 
+        alt="John Ashley Villanueva - Software Engineer"
+        className="w-[245px] h-[330px] object-cover object-[center_top] ml-2" 
 
-              </div>
+      />
+    </div>
+
+          
               
               {/* Floating accent dots */}
               <div className="absolute -top-2 -right-2 w-2 h-2 bg-white rounded-full animate-pulse shadow-lg shadow-white/50"></div>

@@ -73,9 +73,6 @@ const Navigation = ({ activeSection }: NavigationProps) => {
   
     />
   </div>
-  <span className="text-xl font-bold text-white">
-    AshDev
-  </span>
 </div>
 
 
