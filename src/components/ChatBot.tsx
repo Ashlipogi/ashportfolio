@@ -205,9 +205,9 @@ const ChatBot = () => {
           
             <CardTitle className="pb-3 pt-3 ml-4 text-lg font-semibold flex items-center gap-2 text-gray-800">
                   <img
-      src="imgs/Logo Ash.png"
+      src="imgs/Layer.png"
       alt="AshDev Logo"
-      className="w-7 h-7 object-contain -ml-2"
+      className="w-7 h-auto object-contain -ml-2"
   
     />
               Ash AI Assistant
