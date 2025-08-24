@@ -99,6 +99,14 @@ John Ashley is always open to discussing **new opportunities** and **collaborati
   }
 ];
 
+const ThinkingDots = () => (
+  <span className="flex gap-1 items-center h-5">
+    <span className="animate-bounce" style={{ animationDelay: '0s' }}>.</span>
+    <span className="animate-bounce" style={{ animationDelay: '.2s' }}>.</span>
+    <span className="animate-bounce" style={{ animationDelay: '.4s' }}>.</span>
+  </span>
+);
+
 const ChatBot = () => {
   const [hasAskedQuestion, setHasAskedQuestion] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -148,7 +156,8 @@ const ChatBot = () => {
     setHasAskedQuestion(true);
 
     const userMessageId = Date.now().toString();
-    const botMessageId = (Date.now() + 1).toString();
+    const thinkingMessageId = (Date.now() + 1).toString();
+    const botMessageId = (Date.now() + 2).toString();
 
     const userMessage: Message = {
       id: userMessageId,
@@ -157,19 +166,37 @@ const ChatBot = () => {
       timestamp: new Date()
     };
 
-    const botMessage: Message = {
-      id: botMessageId,
-      text: question.answer,
+    // Instead of text, use a flag for thinking message
+    const thinkingMessage: Message = {
+      id: thinkingMessageId,
+      text: "__thinking__", // special marker
       isUser: false,
       timestamp: new Date()
     };
 
-    setMessages(prev => [...prev, userMessage, botMessage]);
+    setMessages(prev => [...prev, userMessage, thinkingMessage]);
 
     // Scroll to the user's question after a brief delay to ensure DOM update
     setTimeout(() => {
       scrollToMessage(userMessageId);
     }, 100);
+
+    // After 5 seconds, replace "Thinking..." with the actual answer
+    setTimeout(() => {
+      setMessages(prev => {
+        const filtered = prev.filter(msg => msg.id !== thinkingMessageId);
+        return [
+          ...filtered,
+          {
+            id: botMessageId,
+            text: question.answer,
+            isUser: false,
+            timestamp: new Date()
+          }
+        ];
+      });
+      scrollToMessage(botMessageId);
+    }, 5000);
   };
 
   const clearChat = () => {
@@ -252,9 +279,14 @@ const ChatBot = () => {
                         {message.isUser && <User className="h-4 w-4 mt-0.5 flex-shrink-0" />}
                         <div>
                           <div className="text-sm leading-relaxed whitespace-pre-line">
-  <ReactMarkdown>{message.text}</ReactMarkdown>
-</div>
-
+                            {message.text === "__thinking__" ? (
+                              <span className="flex items-center">
+                                Thinking <ThinkingDots />
+                              </span>
+                            ) : (
+                              <ReactMarkdown>{message.text}</ReactMarkdown>
+                            )}
+                          </div>
                           <span className="text-xs opacity-70 mt-1 block">
                             {message.timestamp.toLocaleTimeString()}
                           </span>
